@@ -30,6 +30,7 @@ public class Cita {
 	@JoinColumn (name="idVeterinario",
 				foreignKey=@ForeignKey(name="veterinario_id_fk"),
 				nullable=false)
+	
 	private Veterinario veterinario;
 	
 	@Column
