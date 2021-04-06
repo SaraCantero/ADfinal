@@ -15,7 +15,6 @@ public class mascotaModel {
 	private String raza;
 	private Date fechaNacimiento;
 	private String foto;
-	@ManyToOne
 	private cliente idCliente;
 
 	public mascotaModel() {

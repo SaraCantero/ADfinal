@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 
@@ -17,11 +19,13 @@ public class cita {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
 	
-	@Column(length=11)
-	private int idMascota;
+	@ManyToOne
+	@JoinColumn
+	private mascota idMascota;
 	
-	@Column(length=11)
-	private int idVeterinario;
+	@ManyToOne
+	@JoinColumn
+	private veterinario idVeterinario;
 	
 	@Column
 	private Date fecha;

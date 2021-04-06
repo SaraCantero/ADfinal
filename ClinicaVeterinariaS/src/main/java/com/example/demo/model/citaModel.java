@@ -11,9 +11,7 @@ import com.example.demo.entity.veterinario;
 public class citaModel {
 	
 	private int id;
-	@ManyToOne
 	private mascota idMascota;
-	@ManyToOne
 	private veterinario idVeterinario;
 	private Date fecha;
 	private String motivo;
@@ -51,9 +49,6 @@ public class citaModel {
 	public void setId(int id) {
 		this.id = id;
 	}
-
-
-
 
 
 	public mascota getIdMascota() {

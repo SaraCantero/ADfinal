@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 
@@ -32,8 +34,9 @@ public class mascota {
 	@Column(length=100)
 	private String foto;
 	
-	@Column(length=11)
-	private int idCliente;
+	@ManyToOne
+	@JoinColumn
+	private cliente idCliente;
 	
 
 }
