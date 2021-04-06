@@ -45,4 +45,80 @@ public class Cita {
 	@Column
 	private boolean realizada;
 
+	public Cita(int id, Mascota mascota, Veterinario veterinario, Date fecha, String motivo, String informe,
+			boolean realizada) {
+		super();
+		this.id = id;
+		this.mascota = mascota;
+		this.veterinario = veterinario;
+		this.fecha = fecha;
+		this.motivo = motivo;
+		this.informe = informe;
+		this.realizada = realizada;
+	}
+
+	public Cita() {
+		super();
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public Mascota getMascota() {
+		return mascota;
+	}
+
+	public void setMascota(Mascota mascota) {
+		this.mascota = mascota;
+	}
+
+	public Veterinario getVeterinario() {
+		return veterinario;
+	}
+
+	public void setVeterinario(Veterinario veterinario) {
+		this.veterinario = veterinario;
+	}
+
+	public Date getFecha() {
+		return fecha;
+	}
+
+	public void setFecha(Date fecha) {
+		this.fecha = fecha;
+	}
+
+	public String getMotivo() {
+		return motivo;
+	}
+
+	public void setMotivo(String motivo) {
+		this.motivo = motivo;
+	}
+
+	public String getInforme() {
+		return informe;
+	}
+
+	public void setInforme(String informe) {
+		this.informe = informe;
+	}
+
+	public boolean isRealizada() {
+		return realizada;
+	}
+
+	public void setRealizada(boolean realizada) {
+		this.realizada = realizada;
+	}
+	
+	
+	
+	
+
 }
