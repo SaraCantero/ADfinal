@@ -4,6 +4,7 @@ import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,19 +14,23 @@ import javax.persistence.ManyToOne;
 @Entity
 
 
-public class cita {
+public class Cita {
 
-	@Id
+	@Id	
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
 	
 	@ManyToOne
-	@JoinColumn
-	private mascota idMascota;
+	@JoinColumn(name="idMascota", 
+				foreignKey= @ForeignKey(name="mascota_id_fk"),
+				nullable=false)
+	private Mascota mascota;
 	
 	@ManyToOne
-	@JoinColumn
-	private veterinario idVeterinario;
+	@JoinColumn (name="idVeterinario",
+				foreignKey=@ForeignKey(name="veterinario_id_fk"),
+				nullable=false)
+	private Veterinario veterinario;
 	
 	@Column
 	private Date fecha;

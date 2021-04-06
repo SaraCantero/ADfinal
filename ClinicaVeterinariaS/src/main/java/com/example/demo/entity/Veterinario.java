@@ -1,19 +1,14 @@
 package com.example.demo.entity;
 
-import java.sql.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 
 @Entity
 
-
-public class mascota {
+public class Veterinario {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -22,21 +17,17 @@ public class mascota {
 	@Column (length=30)
 	private String nombre;
 	
-	@Column(length=30)
-	private String tipo;
+	@Column(length=50)
+	private String apellidos;
+	
+	@Column(length=10)
+	private String telefono;
 	
 	@Column(length=30)
-	private String raza;
+	private String username;
 	
-	@Column
-	private Date fechaNacimiento;
-	
-	@Column(length=100)
-	private String foto;
-	
-	@ManyToOne
-	@JoinColumn
-	private cliente idCliente;
+	@Column(length=40)
+	private String password;
 	
 
 }
