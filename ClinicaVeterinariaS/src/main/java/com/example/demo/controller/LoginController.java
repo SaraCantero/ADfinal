@@ -3,25 +3,36 @@ package com.example.demo.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.demo.entity.User;
+import com.example.demo.service.impl.UserService;
 
 @Controller
 public class LoginController {
 	
-	@GetMapping("/auth/login")
+	/*@GetMapping("/auth/login")
 	public String login() {
 		return "login";
-	}
+	}*/
 	
-	@GetMapping("/auth/register")
-	public String register() {
+	@GetMapping("/auth/registerForm")
+	public String registerForm(Model model) {
+		model.addAttribute("user", new User());
 		return "register";
 	}
 	
+	@GetMapping("/auth/register")
+	public String register(@ModelAttribute User user, RedirectAttributes flash) {
+		UserService.registrar(user);
+		flash.addFlashAttribute("success", "Usuario registrado correctamente");
+		return "redirect:/clinicaZarpas";
+	}
 	
-	/*@GetMapping("/auth/login")
+	
+	@GetMapping("/auth/login")
 	public String login (Model model, @RequestParam(name="error", required=false)String error,
 				@RequestParam(name="logout", required=false) String logout)
 	{
@@ -29,7 +40,7 @@ public class LoginController {
 		model.addAttribute("error", error);
 		model.addAttribute("logout", logout);
 		return "login";
-	}*/
+	}
 	
 	@GetMapping("/login-post")
 	public String loginPost() {

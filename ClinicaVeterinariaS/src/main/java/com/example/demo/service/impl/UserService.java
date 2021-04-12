@@ -35,6 +35,11 @@ public class UserService implements UserDetailsService{
 			throw new UsernameNotFoundException("Usuario no encontrado");
 		return builder.build();
 	}
+
+	public static void registrar(com.example.demo.entity.User user) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 
 	
