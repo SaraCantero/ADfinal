@@ -1,1 +1,8 @@
-Esta es la Página Ppal de la APP
+<html
+	xmlns:th=http://www.thymeleaf.org
+	xmlns:Sec="http://thymeleaf.org/extras/spring-security">
+	
+	<li sec:authorize="isAuthenticated()" class="nav-item">
+	<a class="nav-link" th:text="Hello ' + ${#authentication.name}"></a>
+
+</html>

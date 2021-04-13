@@ -10,5 +10,9 @@ public class controlador1 {
 	public String index() {
 		return "index";
 	}
-
+	
+	@GetMapping("/infoClinica")
+	public String infoClini() {
+		return "infoClinica";
+	}
 }

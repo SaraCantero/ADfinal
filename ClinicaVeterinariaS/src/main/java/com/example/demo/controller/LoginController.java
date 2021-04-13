@@ -1,9 +1,11 @@
 package com.example.demo.controller;
 
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -12,11 +14,7 @@ import com.example.demo.service.impl.UserService;
 
 @Controller
 public class LoginController {
-	
-	/*@GetMapping("/auth/login")
-	public String login() {
-		return "login";
-	}*/
+
 	
 	@GetMapping("/auth/registerForm")
 	public String registerForm(Model model) {
@@ -24,11 +22,14 @@ public class LoginController {
 		return "register";
 	}
 	
-	@GetMapping("/auth/register")
+	
+	private UserService userService;
+	
+	@PostMapping("/auth/register")
 	public String register(@ModelAttribute User user, RedirectAttributes flash) {
-		UserService.registrar(user);
+		userService.registrar(user);
 		flash.addFlashAttribute("success", "Usuario registrado correctamente");
-		return "redirect:/clinicaZarpas";
+		return "redirect:/auth/login";
 	}
 	
 	
@@ -44,7 +45,7 @@ public class LoginController {
 	
 	@GetMapping("/login-post")
 	public String loginPost() {
-		return "redirect:/clinicaZarpas/";
+		return "redirect:/clinicaZarpas";
 	}
 	
 	

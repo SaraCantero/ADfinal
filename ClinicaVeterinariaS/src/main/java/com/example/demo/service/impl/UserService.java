@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.repository.userRepository;
@@ -35,10 +36,15 @@ public class UserService implements UserDetailsService{
 			throw new UsernameNotFoundException("Usuario no encontrado");
 		return builder.build();
 	}
+	
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
 
-	public static void registrar(com.example.demo.entity.User user) {
-		// TODO Auto-generated method stub
-		
+	public com.example.demo.entity.User registrar(com.example.demo.entity.User user) {
+		user.setPassword(passwordEncoder.encode(user.getPassword()));
+		user.setEnabled(true);
+		user.setRole("ROL_USER");
+		return userRepository.save(user);
 	}
 	
 

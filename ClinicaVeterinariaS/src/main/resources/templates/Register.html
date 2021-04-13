@@ -28,19 +28,17 @@
   <!-- Navigation -->
   <header class="masthead text-center text-white">
     <div class="masthead-content">
-      <div class="container">
+   		<form th:action="@{/auth/register}" th:object="${user}" method="post">
         <h1 class="masthead-heading mb-0">Introduzca sus datos para registrarse:</h1>
-        <label for="inputEmail" class="sr-only">Nombre de Usuario</label>
+        <label for="inputEmail" class="sr-only">Nombre de Usuario: </label>
         <input type="text" class="form-control" placeholder="Username" name="username" id="username"/>
-        <label for="inputPassword" class="sr-only">Password</label>
+        <label for="inputPassword" class="sr-only">Contraseña: </label>
         <input type="password" class="form-control" placeholder="Password" name="password" id="password"/> 
-        <input type="hidden" name="${ csrf.parameterName}" value="${ csrt.token}"/>
       </div>
-    </div>
-    <div class="bg-circle-1 bg-circle"></div>
-    <div class="bg-circle-2 bg-circle"></div>
-    <div class="bg-circle-3 bg-circle"></div>
-    <div class="bg-circle-4 bg-circle"></div>
+   
+   <input class="btn btn-lg btn-primary btn-block text.uppercase" id="boton" type="submit" value="Ir"/>
+  
+  </form>
   </header>
 
 
