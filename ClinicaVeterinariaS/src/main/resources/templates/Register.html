@@ -9,7 +9,6 @@
   <meta name="author" content="">
 
   <title>Login</title>
-  
 
   <!-- Bootstrap core CSS -->
   <link th:href="@{vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
@@ -28,17 +27,28 @@
   <!-- Navigation -->
   <header class="masthead text-center text-white">
     <div class="masthead-content">
-   		<form th:action="@{/auth/register}" th:object="${user}" method="post">
-        <h1 class="masthead-heading mb-0">Introduzca sus datos para registrarse:</h1>
-        <label for="inputEmail" class="sr-only">Nombre de Usuario: </label>
+      <div class="container">
+      <form th:action="@{/auth/register}" th:object="${user}" method="post">
+        <h1 class="masthead-heading mb-0">Iniciar sesión</h1>
+        <label for="inputEmail" class="sr-only">Nombre de Usuario</label>
         <input type="text" class="form-control" placeholder="Username" name="username" id="username"/>
-        <label for="inputPassword" class="sr-only">Contraseña: </label>
+        <label for="inputPassword" class="sr-only">Password</label>
         <input type="password" class="form-control" placeholder="Password" name="password" id="password"/> 
+        <input type="hidden" name="${ csrf.parameterName}" value="${ csrt.token}"/>
       </div>
-   
-   <input class="btn btn-lg btn-primary btn-block text.uppercase" id="boton" type="submit" value="Ir"/>
-  
+    </div>
+    <div class="bg-circle-1 bg-circle"></div>
+    <div class="bg-circle-2 bg-circle"></div>
+    <div class="bg-circle-3 bg-circle"></div>
+    <div class="bg-circle-4 bg-circle"></div>
+    
+    <input class="btn btn-lg btn-primary btn-block text.uppercase" id="boton" type="submit" value="Registrarme!"/>
+
   </form>
+  </header>
+
+
+    
   </header>
 
 
@@ -49,4 +59,4 @@
 
 </body>
 
-</html>
+</html> 

@@ -24,7 +24,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception{
-		auth.userDetailsService(userService).passwordEncoder(passwordEncoder());
+		auth
+		.userDetailsService(userService)
+		.passwordEncoder(passwordEncoder());
 		
 	}
 	
@@ -39,17 +41,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity http) throws Exception{
 		http
 		.authorizeRequests()
-			.antMatchers("/","/infoClinica/**","/clinicaZarpas/**", "/auth/**", "/webjars/**","/css/**","/files/**").permitAll()
+			.antMatchers("/","clinicaZarpas/**","/infoClinica/**", "/auth/**", "/webjars/**","/css/**","/files/**").permitAll()
 			.anyRequest().authenticated()
 			.and()
 		.formLogin()
 			.loginPage("/auth/login")
 			.defaultSuccessUrl("/clinicaZarpas/",true)
+			//.loginProcessingUrl("/login-post")
 			.permitAll()
 			.and()
 		.logout()
 			.logoutUrl("/logout")
-			.logoutSuccessUrl("/auth/login/logout")
+			.logoutSuccessUrl("/auth/login?logout")
 			.permitAll();
 
 		

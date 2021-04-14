@@ -11,14 +11,14 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.repository.userRepository;
+import com.example.demo.repository.UserRepository;
 
 @Service("userService")
 public class UserService implements UserDetailsService{
 	
 	@Autowired
 	@Qualifier("userRepository")
-	private userRepository userRepository;
+	private UserRepository userRepository;
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -26,16 +26,19 @@ public class UserService implements UserDetailsService{
 		
 		UserBuilder builder=null;
 		
+		
 		if(usuario!=null)
 		{
 			builder=User.withUsername(username);
 			builder.password(usuario.getPassword());
 			builder.authorities(new SimpleGrantedAuthority(usuario.getRole()));
-		}//más de un rol, cambiar
+		}//más de un rol, cambiar. Recorrer la lista e ir añadiendo cada uno de lso permisos
 		else
 			throw new UsernameNotFoundException("Usuario no encontrado");
 		return builder.build();
 	}
+
+
 	
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
@@ -46,6 +49,8 @@ public class UserService implements UserDetailsService{
 		user.setRole("ROL_USER");
 		return userRepository.save(user);
 	}
+	
+	
 	
 
 	

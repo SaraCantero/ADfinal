@@ -1,5 +1,8 @@
 package com.example.demo.entity;
 
+import java.util.Collection;
+
+import javax.management.relation.Role;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

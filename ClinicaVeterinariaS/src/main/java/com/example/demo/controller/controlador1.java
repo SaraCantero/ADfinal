@@ -15,4 +15,9 @@ public class controlador1 {
 	public String infoClini() {
 		return "infoClinica";
 	}
+	
+	@GetMapping("/clinicaZarpas")
+	public String clinica() {
+		return "clinicaZarpas";
+	}
 }
