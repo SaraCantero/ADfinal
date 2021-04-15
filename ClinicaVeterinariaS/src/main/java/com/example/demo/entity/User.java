@@ -23,17 +23,28 @@ public class User {
 	@Column(name="password", nullable=false, length=100)
 	private String password;
 	
+	@Column(name="apellidos", nullable=false, length=50)
+	private String apellidos;
+	
+	@Column(name="telefono", nullable=false, length=100)
+	private String telefono;
+	
+	@Column(name="nombre", nullable=false, length=100)
+	private String nombre;
+	
 	private boolean enabled;
 	
 	private String role;
-	//cambiar este campo por una lista que me permita guardadr los diferentes roles
 
-	public User(int id, String nombre, String apellidos, int telefono, String username, String password,
+	public User(int id, String username, String password, String apellidos, String telefono, String nombre,
 			boolean enabled, String role) {
 		super();
 		this.id = id;
 		this.username = username;
 		this.password = password;
+		this.apellidos = apellidos;
+		this.telefono = telefono;
+		this.nombre = nombre;
 		this.enabled = enabled;
 		this.role = role;
 	}
@@ -41,6 +52,32 @@ public class User {
 	public User() {
 		super();
 	}
+
+	public String getApellidos() {
+		return apellidos;
+	}
+
+	public void setApellidos(String apellidos) {
+		this.apellidos = apellidos;
+	}
+
+	public String getTelefono() {
+		return telefono;
+	}
+
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+
 
 	public int getId() {
 		return id;

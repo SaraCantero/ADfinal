@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class controlador1 {
 
-	@GetMapping("/")
+	@GetMapping("/inicio")
 	public String index() {
 		return "index";
 	}
@@ -20,4 +20,5 @@ public class controlador1 {
 	public String clinica() {
 		return "clinicaZarpas";
 	}
+	
 }

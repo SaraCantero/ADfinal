@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
 
@@ -8,14 +9,14 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>MiSesion</title>
+  <title>Inicio</title>
 
   <!-- Bootstrap core CSS -->
   <link th:href="@{vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
 
   <!-- Custom fonts for this template -->
-  <link th:href="@{https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900}" rel="stylesheet">
-  <link th:href="@{https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i}" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
 
   <!-- Custom styles for this template -->
   <link th:href="@{css/one-page-wonder.min.css}" rel="stylesheet">
@@ -33,12 +34,18 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a class="nav-link" th:href="@{/auth/registerForm}">Registrarse</a>
+       	
+          <li sec:authorize="isAuthenticated()" class="nav-item">
+          <a class="nav-link" th:text ="${#authentication.getPrincipal().getUsername()}"></a>
+          </li>	
+          <li sec:authorize="!isAuthenticated()" class="nav-item">
+          	<a class="nav-link" th:href="@{/auth/registerForm}"><span class="fas fa-sing-in-alt"></span>Registrarse</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" th:href="@{/auth/login}">Iniciar Sesión</a>
-          </li>
+          	
+          <li sec:authorize="isAuthenticated()" class="nav-item">
+          	<form class="form-inline" th:action="@{/logout}" method="post">
+          	<button class="btn btn-link" type="submit">Cerrar Sesión</button>
+          	</form>
         </ul>
       </div>
     </div>
@@ -48,8 +55,8 @@
     <div class="masthead-content">
       <div class="container">
         <h1 class="masthead-heading mb-0">Bienvenido</h1>
-        <h2 class="masthead-subheading mb-0">Esta es tu sección personal</h2>
-        <a th:href="@{/}" class="btn btn-primary btn-xl rounded-pill mt-5">Añadir mascota</a>
+        <h2 class="masthead-subheading mb-0">Tu mascota en las mejores manos</h2>
+        <a th:href="@{/infoClinica}" class="btn btn-primary btn-xl rounded-pill mt-5">Sobre nosotros</a>
       </div>
     </div>
     <div class="bg-circle-1 bg-circle"></div>
