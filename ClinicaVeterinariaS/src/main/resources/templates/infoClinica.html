@@ -34,11 +34,18 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a class="nav-link" th:href="@{/auth/registerForm}">Registro</a>
+           <li sec:authorize="!isAuthenticated()" class="nav-item">
+          	<a class="nav-link" th:href="@{/auth/registerForm}"><span class="fas fa-sing-in-alt"></span>Registrarse</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" th:href="@{/auth/login}">Login</a>
+          <li sec:authorize="!isAuthenticated()" class="nav-item">
+          	<a class="nav-link" th:href="@{/auth/login}"><span class="fas fa-user"></span>Iniciar Sesión</a>
+          </li>	
+          <li sec:authorize="isAuthenticated()" class="nav-item">
+          <a class="nav-link" th:text ="${#authentication.getPrincipal().getUsername()}"></a>
+          </li>	
+          <li sec:authorize="isAuthenticated()" class="nav-item">
+          	<form class="form-inline" th:action="@{/logout}" method="post">
+          	<button class="btn btn-link" type="submit">Cerrar Sesión</button>
           </li>
         </ul>
       </div>
@@ -79,4 +86,3 @@
 </body>
 
 </html>
-s

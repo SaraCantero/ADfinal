@@ -1,10 +1,9 @@
 package com.example.demo.model;
 import java.sql.Date;
 
-import javax.persistence.ManyToOne;
-
 import com.example.demo.entity.Mascota;
-import com.example.demo.entity.Veterinario;
+import com.example.demo.entity.User;
+
 
 
 
@@ -12,11 +11,12 @@ public class citaModel {
 	
 	private int id;
 	private Mascota idMascota;
-	private Veterinario idVeterinario;
+	private User idUser;
 	private Date fecha;
 	private String motivo;
 	private String informe;
 	private boolean realizada;
+	private User User;
 	
 
 	
@@ -26,12 +26,12 @@ public class citaModel {
 	}
 
 
-	public citaModel(int id, Mascota idMascota, Veterinario idVeterinario, Date fecha, String motivo, String informe,
+	public citaModel(int id, Mascota idMascota, User idUser, Date fecha, String motivo, String informe,
 			boolean realizada) {
 		super();
 		this.id = id;
 		this.idMascota = idMascota;
-		this.idVeterinario = idVeterinario;
+		this.User = idUser;
 		this.fecha = fecha;
 		this.motivo = motivo;
 		this.informe = informe;
@@ -61,13 +61,13 @@ public class citaModel {
 	}
 
 
-	public Veterinario getIdVeterinario() {
-		return idVeterinario;
+	public User getIdUser() {
+		return idUser;
 	}
 
 
-	public void setIdVeterinario(Veterinario idVeterinario) {
-		this.idVeterinario = idVeterinario;
+	public void setIdUser(User idUser) {
+		this.idUser = idUser;
 	}
 
 

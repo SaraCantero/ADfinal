@@ -1,13 +1,14 @@
 package com.example.demo.entity;
 
-import java.util.Collection;
+import java.util.List;
 
-import javax.management.relation.Role;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 
@@ -36,8 +37,14 @@ public class User {
 	
 	private String role;
 
+	@OneToMany( cascade=CascadeType.ALL)
+	private List<Mascota>mascotas;
+	
+	
+
+
 	public User(int id, String username, String password, String apellidos, String telefono, String nombre,
-			boolean enabled, String role) {
+			boolean enabled, String role, List<Mascota> mascotas) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -47,6 +54,7 @@ public class User {
 		this.nombre = nombre;
 		this.enabled = enabled;
 		this.role = role;
+		this.mascotas = mascotas;
 	}
 
 	public User() {
@@ -119,6 +127,14 @@ public class User {
 		this.role = role;
 	}
 	
+	public List<Mascota> getMascotas() {
+		return mascotas;
+	}
+
+	public void setMascotas(List<Mascota> mascotas) {
+		this.mascotas = mascotas;
+	}
+
 	
 	
 

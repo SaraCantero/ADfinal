@@ -34,13 +34,13 @@ public class Mascota {
 	private String foto;
 	
 	@ManyToOne
-	@JoinColumn(name="idCliente",
-			foreignKey=@ForeignKey(name="cliente_id_fk"),
+	@JoinColumn(name="idUSer",
+			foreignKey=@ForeignKey(name="user_id_fk"),
 			nullable=false)
-	private Cliente cliente;
+	private User user;
 
 	public Mascota(int id, String nombre, String tipo, String raza, Date fechaNacimiento, String foto,
-			Cliente cliente) {
+			User user) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -48,7 +48,7 @@ public class Mascota {
 		this.raza = raza;
 		this.fechaNacimiento = fechaNacimiento;
 		this.foto = foto;
-		this.cliente = cliente;
+		this.user = user;
 	}
 
 	public Mascota() {
@@ -103,12 +103,12 @@ public class Mascota {
 		this.foto = foto;
 	}
 
-	public Cliente getCliente() {
-		return cliente;
+	public User getUser() {
+		return user;
 	}
 
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
+	public void setUser(User user) {
+		this.user = user;
 	}
 	
 	

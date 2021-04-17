@@ -1,10 +1,12 @@
 package com.example.demo.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.security.core.userdetails.User.UserBuilder;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.User.UserBuilder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -12,9 +14,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.repository.UserRepository;
+import com.example.demo.services.userService;
 
 @Service("userService")
-public class UserService implements UserDetailsService{
+public class UserService implements UserDetailsService, userService{
 	
 	@Autowired
 	@Qualifier("userRepository")
@@ -50,9 +53,31 @@ public class UserService implements UserDetailsService{
 		return userRepository.save(user);
 	}
 	
-	
-	
 
+	public List<com.example.demo.entity.User> listAllUser() {
+		// TODO Auto-generated method stub
+		return userRepository.findAll();
+	}
+
+	public int removeUser(int id) {
+		// TODO Auto-generated method stub
+		userRepository.deleteById(id);
+		return 0;
+	}
+
+
+	@Override
+	public com.example.demo.entity.User addUser(com.example.demo.entity.User user) {
+		// TODO Auto-generated method stub
+		return userRepository.save(user);
+	}
+
+
+	@Override
+	public com.example.demo.entity.User updateUser(com.example.demo.entity.User user) {
+		// TODO Auto-generated method stub
+		return userRepository.save(user);
+	}
 	
 
 }

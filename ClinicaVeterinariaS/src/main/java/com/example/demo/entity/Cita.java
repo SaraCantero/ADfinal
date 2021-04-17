@@ -27,11 +27,11 @@ public class Cita {
 	private Mascota mascota;
 	
 	@ManyToOne
-	@JoinColumn (name="idVeterinario",
-				foreignKey=@ForeignKey(name="veterinario_id_fk"),
+	@JoinColumn (name="idUser",
+				foreignKey=@ForeignKey(name="user_id_fk"),
 				nullable=false)
 	
-	private Veterinario veterinario;
+	private User user;
 	
 	@Column
 	private Date fecha;
@@ -45,12 +45,12 @@ public class Cita {
 	@Column
 	private boolean realizada;
 
-	public Cita(int id, Mascota mascota, Veterinario veterinario, Date fecha, String motivo, String informe,
+	public Cita(int id, Mascota mascota, User user, Date fecha, String motivo, String informe,
 			boolean realizada) {
 		super();
 		this.id = id;
 		this.mascota = mascota;
-		this.veterinario = veterinario;
+		this.user= user;
 		this.fecha = fecha;
 		this.motivo = motivo;
 		this.informe = informe;
@@ -77,12 +77,12 @@ public class Cita {
 		this.mascota = mascota;
 	}
 
-	public Veterinario getVeterinario() {
-		return veterinario;
+	public User getUser() {
+		return user;
 	}
 
-	public void setVeterinario(Veterinario veterinario) {
-		this.veterinario = veterinario;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public Date getFecha() {

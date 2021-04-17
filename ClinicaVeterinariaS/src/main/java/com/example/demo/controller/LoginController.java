@@ -27,7 +27,7 @@ public class LoginController {
 	@GetMapping("/auth/registerForm")
 	public String registerForm(Model model) {
 		model.addAttribute("user", new User());
-		return "register";
+		return "Register";
 	}
 	
 
@@ -47,13 +47,13 @@ public class LoginController {
 		model.addAttribute("user", new User());
 		model.addAttribute("error", error);
 		model.addAttribute("logout", logout);
-		return "login";
+		return "Login";
 	}
 
 	@GetMapping("/login-post")
 	public String loginPost() {
 		
-		return "redirect:/clinicaZarpas";
+		return "redirect:/clinicaZarpas/";
 	}
 	
 	

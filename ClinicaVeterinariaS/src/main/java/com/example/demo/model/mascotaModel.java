@@ -1,11 +1,7 @@
 package com.example.demo.model;
 
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-
-import com.example.demo.entity.Cliente;
-
 import java.sql.Date;
+import com.example.demo.entity.User;
 
 public class mascotaModel {
 	
@@ -15,7 +11,7 @@ public class mascotaModel {
 	private String raza;
 	private Date fechaNacimiento;
 	private String foto;
-	private Cliente idCliente;
+	private User idUser;
 
 	public mascotaModel() {
 		// TODO Auto-generated constructor stub
@@ -24,7 +20,7 @@ public class mascotaModel {
 
 
 	public mascotaModel(int id, String nombre, String tipo, String raza, Date fechaNacimiento, String foto,
-			Cliente idCliente) {
+			User idUser) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -32,7 +28,7 @@ public class mascotaModel {
 		this.raza = raza;
 		this.fechaNacimiento = fechaNacimiento;
 		this.foto = foto;
-		this.idCliente = idCliente;
+		this.idUser = idUser;
 	}
 
 
@@ -87,14 +83,14 @@ public class mascotaModel {
 
 
 
-	public Cliente getIdCliente() {
-		return idCliente;
+	public User getIdUser() {
+		return idUser;
 	}
 
 
 
-	public void setIdCliente(Cliente idCliente) {
-		this.idCliente = idCliente;
+	public void setIdCliente(User idUser) {
+		this.idUser = idUser;
 	}
 
 	
