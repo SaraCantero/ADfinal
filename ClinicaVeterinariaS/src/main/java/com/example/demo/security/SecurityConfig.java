@@ -42,9 +42,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		http
 		.authorizeRequests()
 			.antMatchers("/","/index/**","/clinicaZarpas/**","/vendor/**","/infoClinica/**", "/auth/**", "/webjars/**","/photos/**","/css/**","/files/**").permitAll()
-			.regexMatchers("/admin/**").hasRole("ADMIN")
-			.regexMatchers("/cli/**").hasRole("cliente")
-			.regexMatchers("/vet/**").hasRole("veterinario")
+			//.regexMatchers("/admin/**").hasRole("ADMIN")
+			//.regexMatchers("/cli/**").hasRole("cliente")
+			//.regexMatchers("/vet/**").hasRole("veterinario")
 			.anyRequest().authenticated()
 			.and()
 		.formLogin()
