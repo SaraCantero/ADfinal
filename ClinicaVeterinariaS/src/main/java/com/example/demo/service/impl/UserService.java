@@ -19,6 +19,7 @@ import com.example.demo.services.userService;
 @Service("userService")
 public class UserService implements UserDetailsService, userService{
 	
+	
 	@Autowired
 	@Qualifier("userRepository")
 	private UserRepository userRepository;

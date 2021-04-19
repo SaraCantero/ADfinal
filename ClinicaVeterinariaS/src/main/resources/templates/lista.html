@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 
-<html 
-xmlns:th= http://www.thymeleaf.org
-xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
 
@@ -11,7 +9,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>One Page Wonder - Start Bootstrap Template</title>
+  <title>GestionVeterinaria</title>
 
   <!-- Bootstrap core CSS -->
   <link th:href="@{vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
@@ -47,27 +45,46 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
           </li>	
           <li sec:authorize="isAuthenticated()" class="nav-item">
           	<form class="form-inline" th:action="@{/logout}" method="post">
-          	<button class="btn btn-link" th:href="@{/}" type="submit">Cerrar Sesión</button>
+          	<button class="btn btn-link" type="submit">Cerrar Sesión</button>
           </li>
         </ul>
       </div>
     </div>
   </nav>
 
- <header class="masthead text-center text-white">
-    <div class="masthead-content">
-      <div class="container">
-        <h1 class="masthead-heading mb-0">Clinica Veterinaria Zarpas</h1>
-        <h2 class="masthead-subheading mb-0">Tu mascota en las mejores manos</h2>
-        <a th:href="@{/infoClinica}" class="btn btn-primary btn-xl rounded-pill mt-5">Sobre nosotros</a>
-      </div>
-    </div>
+  <!-- Navigation -->
+  <header class="masthead text-center text-white">
+  
+  <table class="table">
+		<thead>
+			<tr>
+				<td>Nombre: </td>
+				<td>Apellidos: </td>
+				<td>Teléfono: </td>
+			</tr>
+		</thead>
+
+		<tbody>
+			<tr th:each="user:${user}">
+				<td th:text="${user.nombre}"></td>
+				<td th:text="${user.apellidos}"></td>
+				<td th:text="${user.telefono}"></td>
+				<a class="btn btn-warning">Editar</a>
+				<a class="btn btn danger">Eliminar</a>
+			</tr>
+		</tbody>
+	</table>
+
     <div class="bg-circle-1 bg-circle"></div>
     <div class="bg-circle-2 bg-circle"></div>
     <div class="bg-circle-3 bg-circle"></div>
     <div class="bg-circle-4 bg-circle"></div>
+    
+   
+   
+	
+ 
   </header>
-
 
   <!-- Footer -->
   <footer class="py-5 bg-black">
@@ -76,7 +93,6 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     </div>
     <!-- /.container -->
   </footer>
-
   <!-- Bootstrap core JavaScript -->
   <script th:src="@{vendor/jquery/jquery.min.js}"></script>
   <script th:src="@{vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
@@ -84,3 +100,6 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 </body>
 
 </html>
+
+
+

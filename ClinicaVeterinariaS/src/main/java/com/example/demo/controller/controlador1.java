@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import java.security.Principal;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -17,7 +19,8 @@ public class controlador1 {
 	}
 	
 	@GetMapping("/perfilCliente")
-	public String editarPerfil() {
+	public String editarPerfil(Principal principal) {
+		System.out.println(principal.getName());
 		return "perfilCliente";
 	}
 	
