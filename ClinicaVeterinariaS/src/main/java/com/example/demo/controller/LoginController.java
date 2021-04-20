@@ -22,6 +22,8 @@ public class LoginController {
 	@Autowired
 	@Qualifier("userService")
 	private UserService userService;
+	
+	private User user;
 
 
 	@GetMapping("/auth/registerForm")
@@ -33,6 +35,7 @@ public class LoginController {
 
 	@PostMapping("/auth/register")
 	public String register(@ModelAttribute User user, RedirectAttributes flash) {
+		user.setRole("ROLE_CLIENTE");
 		userService.registrar(user);
 		flash.addFlashAttribute("success", "Usuario registrado correctamente");
 		return "redirect:/auth/login";
@@ -52,7 +55,6 @@ public class LoginController {
 
 	@GetMapping("/login-post")
 	public String loginPost() {
-		
 		return "redirect:/clinicaZarpas/";
 	}
 	

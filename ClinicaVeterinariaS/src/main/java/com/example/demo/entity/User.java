@@ -11,7 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
-
 public class User {
 	
 	@Id 
@@ -33,7 +32,7 @@ public class User {
 	@Column(name="nombre", nullable=false, length=100)
 	private String nombre;
 	
-	private boolean enabled;
+	private boolean enabled=false;
 	
 	private String role;
 

@@ -21,7 +21,7 @@ public class controlador1 {
 	@GetMapping("/perfilCliente")
 	public String editarPerfil(Principal principal) {
 		System.out.println(principal.getName());
-		return "perfilCliente";
+		return "editarCliente";
 	}
 	
 	@GetMapping("/clinicaZarpas")

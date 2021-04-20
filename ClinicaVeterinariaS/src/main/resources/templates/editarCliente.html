@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 
 <head>
 
@@ -12,14 +11,14 @@
   <title>GestionVeterinaria</title>
 
   <!-- Bootstrap core CSS -->
-  <link th:href="@{vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
   <!-- Custom fonts for this template -->
   <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
 
   <!-- Custom styles for this template -->
-  <link th:href="@{css/one-page-wonder.min.css}" rel="stylesheet">
+  <link href="css/one-page-wonder.min.css" rel="stylesheet">
 
 </head>
 
@@ -51,14 +50,10 @@
       </div>
     </div>
   </nav>
-
-   <header class="masthead text-center text-white">
+  <header class="masthead text-center text-white">
     <div class="masthead-content">
       <div class="container">
-        <h1 class="masthead-heading mb-0">Bienvenido</h1>
-        <h2 class="masthead-subheading mb-0">Tu mascota en las mejores manos</h2>
-        <a th:href="@{/infoClinica}" class="btn btn-primary btn-xl rounded-pill mt-5">Sobre nosotros</a>
-        <a th:href="@{/perfilCliente}" class="btn btn-primary btn-xl rounded-pill mt-5">Editar mi perfil</a>
+        <h1 class="masthead-heading mb-0">Modificar mis datos</h1>
       </div>
     </div>
     <div class="bg-circle-1 bg-circle"></div>
@@ -66,6 +61,29 @@
     <div class="bg-circle-3 bg-circle"></div>
     <div class="bg-circle-4 bg-circle"></div>
   </header>
+
+  <section>
+      <div class="masthead-content">
+      <div class="container">
+      <form th:action="@{/guardar}" th:object="${user}" method="post">
+        <h1 class="masthead-heading mb-0">Editar mi perfil: </h1>
+        <label>Password: </label>
+        <input type="password" class="form-control" placeholder="Password" name="password" id="password"/> 
+        </br>
+         <label>Nombre: </label>
+        <input type="text" class="form-control" placeholder="Nombre" name="nombre" id="nombre"/>
+        </br>
+         <label>Apellidos: </label>
+        <input type="text" class="form-control" placeholder="Apellidos" name="apellidos" id="apellidos"/>
+        </br>
+         <label>Teléfono: </label>
+        <input type="text" class="form-control" placeholder="Telefono" name="telefono" id="telefono"/>
+        </br>
+      </div>
+    </div>
+      <input class="btn btn-lg btn-primary btn-block text.uppercase" id="boton" type="submit" value="Guardar cambios!"/>
+	</form>
+  </section>
 
 
   <!-- Footer -->
@@ -77,8 +95,8 @@
   </footer>
 
   <!-- Bootstrap core JavaScript -->
-  <script th:src="@{vendor/jquery/jquery.min.js}"></script>
-  <script th:src="@{vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 </body>
 
