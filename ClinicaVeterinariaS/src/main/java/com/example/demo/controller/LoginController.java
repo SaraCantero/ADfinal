@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.demo.entity.User;
-import com.example.demo.service.impl.UserService;
+import com.example.demo.service.impl.UserServiceImpl;
 
 
 
@@ -21,7 +21,7 @@ public class LoginController {
 	
 	@Autowired
 	@Qualifier("userService")
-	private UserService userService;
+	private UserServiceImpl userService;
 	
 	private User user;
 
@@ -38,7 +38,7 @@ public class LoginController {
 		user.setRole("ROLE_CLIENTE");
 		userService.registrar(user);
 		flash.addFlashAttribute("success", "Usuario registrado correctamente");
-		return "redirect:/auth/login";
+		return "redirect:/";
 	}
 	
 

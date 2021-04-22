@@ -10,8 +10,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
-import com.example.demo.service.impl.UserService;
+import com.example.demo.service.impl.UserServiceImpl;
 
 @Configuration
 @EnableWebSecurity
@@ -20,7 +19,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
 	@Autowired
 	@Qualifier("userService")
-	private UserService userService;
+	private UserServiceImpl userService;
 	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception{
@@ -55,7 +54,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 			.and()
 		.logout()
 			.logoutUrl("/logout")
-			.logoutSuccessUrl("/auth/login?logout")
+			.logoutSuccessUrl("/clinicaZarpas")
 			.permitAll();
 
 		

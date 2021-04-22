@@ -10,7 +10,7 @@ public class controlador1 {
 
 	@GetMapping("/")
 	public String index() {
-		return "index";
+		return "redirect:/clinicaZarpas";
 	}
 	
 	@GetMapping("/infoClinica")
@@ -32,6 +32,11 @@ public class controlador1 {
 	@GetMapping("/contacto")
 	public String contacto() {
 		return "contacto";
+	}
+	
+	@GetMapping("/admin")
+	public String sitioAdmin() {
+		return "admin";
 	}
 
 	

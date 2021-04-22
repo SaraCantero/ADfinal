@@ -18,7 +18,7 @@ import com.example.demo.repository.UserRepository;
 import com.example.demo.services.userService;
 
 @Service("userService")
-public class UserService implements UserDetailsService, userService{
+public class UserServiceImpl implements UserDetailsService, userService{
 	
 	
 	@Autowired
@@ -28,7 +28,6 @@ public class UserService implements UserDetailsService, userService{
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		com.example.demo.entity.User usuario=userRepository.findByUsername(username);
-		
 		UserBuilder builder=null;
 		if(usuario!=null)
 		{
@@ -43,12 +42,20 @@ public class UserService implements UserDetailsService, userService{
 
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
-
+		
 	@Override
-	public com.example.demo.entity.User registrar(com.example.demo.entity.User user) {
+	public com.example.demo.entity.User añadirCliente(com.example.demo.entity.User user) {
+		user.setRole("ROLE_CLIENTE");
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		user.setEnabled(true);
-		user.setRole("ROLE_CLIENTE");
+		return userRepository.save(user);
+	}
+	
+	@Override
+	public com.example.demo.entity.User añadirVeterinario(com.example.demo.entity.User user) {
+		user.setRole("ROLE_VETERINARIO");
+		user.setPassword(passwordEncoder.encode(user.getPassword()));
+		user.setEnabled(true);
 		return userRepository.save(user);
 	}
 	
@@ -67,38 +74,42 @@ public class UserService implements UserDetailsService, userService{
 
 
 	@Override
-	public void borrarCliente(int id) {
-		// TODO Auto-generated method stub
-		
+	public int borrarCliente(int id) {
+		userRepository.deleteById(id);
+		return 0;
 	}
+	
+
+	@Override
+	public int borrarVeterinario(int id) {
+		userRepository.deleteById(id);
+		return 0;
+	}
+
 
 
 	@Override
 	public com.example.demo.entity.User modificarCliente(com.example.demo.entity.User user) {
-		// TODO Auto-generated method stub
-		return null;
+		return userRepository.save(user);
 	}
-
-
-
-
-
-
-	@Override
-	public void borrarVeterinario(int id) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
 
 
 
 	@Override
 	public com.example.demo.entity.User modificarVeterinario(com.example.demo.entity.User user) {
-		// TODO Auto-generated method stub
-		return null;
+		return userRepository.save(user);
 	}
+
+	@Override
+	public com.example.demo.entity.User registrar(com.example.demo.entity.User user) {
+		user.setPassword(passwordEncoder.encode(user.getPassword()));
+		user.setEnabled(false);
+		user.setRole("ROLE_CLIENTE");
+		return userRepository.save(user);
+	}
+
+
+	
 
 	
 

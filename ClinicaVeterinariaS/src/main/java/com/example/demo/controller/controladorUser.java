@@ -13,14 +13,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.entity.User;
-import com.example.demo.service.impl.UserService;
+import com.example.demo.service.impl.UserServiceImpl;
 
 @Controller
 public class controladorUser {
 
 	
 	@Autowired
-	private UserService userService;
+	private UserServiceImpl userService;
 	private User user;
 	
 	

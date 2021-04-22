@@ -24,6 +24,7 @@
 
 <body>
 
+
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
     <div class="container">
@@ -50,6 +51,7 @@
       </div>
     </div>
   </nav>
+  </header>
   <header class="masthead text-center text-white">
     <div class="masthead-content">
       <div class="container">
@@ -65,7 +67,7 @@
   <section>
       <div class="masthead-content">
       <div class="container">
-      <form th:action="@{/guardar}" th:object="${user}" method="post">
+      <form th:action="@{/auth/register}" th:object="${user}" method="post">
         <h1 class="masthead-heading mb-0">Editar mi perfil: </h1>
         <label>Password: </label>
         <input type="password" class="form-control" placeholder="Password" name="password" id="password"/> 

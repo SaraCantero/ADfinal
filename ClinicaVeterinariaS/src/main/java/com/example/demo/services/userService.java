@@ -12,16 +12,17 @@ public interface userService {
 
 		
 		public abstract List<User> listarClientes();
-		public abstract void borrarCliente(int id);
+		public abstract int borrarCliente(int id);
 		public abstract User modificarCliente(User user);
-	
+		public abstract User añadirCliente(User user);
 		
 		public abstract List<User> listarVeterinarios();
-		public abstract void borrarVeterinario(int id);
+		public abstract int borrarVeterinario(int id);
 		public abstract User modificarVeterinario(User user);
+		public abstract User añadirVeterinario(User user);
 		
 		public abstract User registrar(User user);
-		//
+		
 		
 		}
 		
