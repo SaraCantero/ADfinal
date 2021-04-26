@@ -1,6 +1,6 @@
 package com.example.demo.controller;
 
-import java.util.List;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -75,6 +75,14 @@ public class adminController {
 		return "redirect:/admin/listaClientes";
 		
 	}
+	
+//	@GetMapping("/activarCli/{id}")
+//	public String activar(Model model) {
+//		model.addAttribute("user", new User());
+//		user.setEnabled(true);
+//		return "redirect:/admin/listaClientes";
+//		
+//	}
 
 	@GetMapping({"/newVeterinario", "/newVeterinario/{id}"})
 	public String agregarVet(Model model) {
@@ -99,6 +107,7 @@ public class adminController {
 			return "redirect:/admin/listaVeterinarios";
 			
 		}	
+	
 	
 	
 //	@GetMapping("/editar/{id}")

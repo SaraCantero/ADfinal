@@ -34,13 +34,12 @@ public class Mascota {
 	private String foto;
 	
 	@ManyToOne
-	@JoinColumn(name="idUSer",
+	@JoinColumn(name="idUser",
 			foreignKey=@ForeignKey(name="user_id_fk"),
 			nullable=false)
 	private User user;
 
-	public Mascota(int id, String nombre, String tipo, String raza, Date fechaNacimiento, String foto,
-			User user) {
+	public Mascota(int id, String nombre, String tipo, String raza, Date fechaNacimiento, String foto, User user) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -110,7 +109,6 @@ public class Mascota {
 	public void setUser(User user) {
 		this.user = user;
 	}
-	
 	
 	
 

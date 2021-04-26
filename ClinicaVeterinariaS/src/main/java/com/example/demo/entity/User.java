@@ -1,8 +1,8 @@
 package com.example.demo.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -36,8 +36,8 @@ public class User {
 	
 	private String role;
 
-//	@OneToMany( cascade=CascadeType.ALL)
-//	private List<Mascota>mascotas;
+	@OneToMany(mappedBy="user")
+	private List<Mascota>mascotas=new ArrayList<>();
 
 	public User(int id, String username, String password, String apellidos, String telefono, String nombre,
 			boolean enabled, String role, List<Mascota> mascotas) {

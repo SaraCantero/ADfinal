@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import com.example.demo.entity.Mascota;
 import com.example.demo.entity.User;
 
 @Service
@@ -23,7 +24,7 @@ public interface userService {
 		
 		public abstract User registrar(User user);
 		List<User> listarId(User user);
-		
+		public abstract List<Mascota> listAllMascotas(User user);
 		
 		}
 		

@@ -1,7 +1,6 @@
 package com.example.demo.service.impl;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -14,6 +13,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.entity.Mascota;
+import com.example.demo.repository.MascotaRepository;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.services.userService;
 
@@ -24,6 +25,10 @@ public class UserServiceImpl implements UserDetailsService, userService{
 	@Autowired
 	@Qualifier("userRepository")
 	private UserRepository userRepository;
+	
+	@Autowired
+	@Qualifier("mascotaRepository")
+	private MascotaRepository mascotaRepository;
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -111,6 +116,12 @@ public class UserServiceImpl implements UserDetailsService, userService{
 		return userRepository.save(user);
 	}
 
+	@Override
+	public List<Mascota> listAllMascotas(com.example.demo.entity.User user) {
+		return mascotaRepository.findByUser(user);
+	}
+
+	
 	
 
 	
