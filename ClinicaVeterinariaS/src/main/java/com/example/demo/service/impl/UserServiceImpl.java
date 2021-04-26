@@ -68,9 +68,12 @@ public class UserServiceImpl implements UserDetailsService, userService{
 		return userRepository.findByRole("ROLE_VETERINARIO");
 	}
 	
+	@Override
 	public List<com.example.demo.entity.User> listarId(com.example.demo.entity.User user){
 		return userRepository.findById(user.getId());
 	}
+	
+
 
 
 	@Override
@@ -108,6 +111,7 @@ public class UserServiceImpl implements UserDetailsService, userService{
 		return userRepository.save(user);
 	}
 
+	
 
 	
 

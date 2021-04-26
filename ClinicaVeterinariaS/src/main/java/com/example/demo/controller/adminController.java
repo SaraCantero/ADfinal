@@ -32,6 +32,11 @@ public class adminController {
 	@Qualifier("userService")
 	private userService userService;
 	
+	@Autowired
+	@Qualifier("userRepository")
+	private UserRepository userRepository;
+	
+	
 	
 	@GetMapping("/listaClientes")
 	public ModelAndView listaClientes() {
@@ -47,41 +52,80 @@ public class adminController {
 		return mav;
 	}
 	
-	@GetMapping("/newCliente")
+	@GetMapping({"/newCliente", "/newCliente/{id}"})
 	public String agregar(Model model) {
 		model.addAttribute("user", new User());
 		return FORMCLI_VIEW;
 	}
 	
 	@PostMapping("/addCliente")
-	public String guardar(@ModelAttribute("user") User user, BindingResult bindingResult) {
+	public String guardar(@ModelAttribute("user") User user, BindingResult bindingResult
+			,RedirectAttributes flash, Model model) {
 		if(bindingResult.hasErrors())
 			return FORMCLI_VIEW;
 		else {
-		userService.añadirCliente(user);
-		return "redirect:/admin/listaClientes";
+			if(user.getId()==0) {
+				userService.añadirCliente(user);
+				flash.addFlashAttribute("success", "Cliente registrado correctamente");
+			}
+			else {
+				userService.modificarCliente(user);
+				flash.addFlashAttribute("success", "Cliente modificado");			}
 		}
+		return "redirect:/admin/listaClientes";
+		
 	}
 
-	@GetMapping("/newVeterinario")
+	@GetMapping({"/newVeterinario", "/newVeterinario/{id}"})
 	public String agregarVet(Model model) {
 		model.addAttribute("user", new User());
 		return FORMVET_VIEW;
 	}
 	
 	@PostMapping("/addVeterinario")
-	public String guardarVet(@ModelAttribute User user, RedirectAttributes flash) {
-		userService.añadirVeterinario(user);
-		return "redirect:/admin/listaVeterinarios";
-		
+		public String guardarVet(@ModelAttribute("user") User user, BindingResult bindingResult
+				,RedirectAttributes flash, Model model) {
+			if(bindingResult.hasErrors())
+				return FORMVET_VIEW;
+			else {
+				if(user.getId()==0) {
+					userService.añadirVeterinario(user);
+					flash.addFlashAttribute("success", "Veterinario registrado correctamente");
+				}
+				else {
+					userService.modificarVeterinario(user);
+					flash.addFlashAttribute("success", "Veterinario modificado");			}
+			}
+			return "redirect:/admin/listaVeterinarios";
+			
+		}	
+	
+	
+//	@GetMapping("/editar/{id}")
+//	public String editar(@PathVariable int id, Model model) {
+//		List<User>user=userRepository.findById(id);
+//		model.addAttribute("user", user);
+//		return FORMCLI_VIEW;
+//	}
+	
+	@GetMapping("/deletedCli/{id}")
+	public String deleteCliente(@PathVariable("id") int id,
+			RedirectAttributes flash) {
+		if(userService.borrarCliente(id)==0)
+			flash.addFlashAttribute("success", "Usuario eliminado");
+		else
+			flash.addFlashAttribute("error", "No se ha podido eliminar el suaurio");
+		return "redirect:/admin/listaClientes";
 	}
 	
-	@GetMapping("/editar/{id}")
-	public String editar(@PathVariable int id, Model model) {
-		UserRepository userRepository = null;
-		List<User>user=userRepository.findById(id);
-		model.addAttribute("user", user);
-		return "formCli";
+	@GetMapping("/deletedVet/{id}")
+	public String deleteVeterinario(@PathVariable("id") int id,
+			RedirectAttributes flash) {
+		if(userService.borrarVeterinario(id)==0)
+			flash.addFlashAttribute("success", "Usuario eliminado");
+		else
+			flash.addFlashAttribute("error", "No se ha podido eliminar el suaurio");
+		return "redirect:/admin/listaVeterinarios";
 	}
 
 

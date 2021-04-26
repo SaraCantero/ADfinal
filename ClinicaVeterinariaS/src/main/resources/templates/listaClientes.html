@@ -44,7 +44,7 @@
           <a class="nav-link" th:text ="${#authentication.getPrincipal().getUsername()}"></a>
           </li>	
           <li sec:authorize="isAuthenticated()" class="nav-item">
-          	<form class="form-inline" th:action="@{/logout}" method="post">
+          	<a class="form-inline" th:action="@{/logout}" method="post"></a>
           	<button class="btn btn-link" type="submit">Cerrar Sesión</button>
           </li>
         </ul>
@@ -83,11 +83,11 @@
 				<th th:text="${user.nombre}"></th>
 				<th th:text="${user.apellidos}"></th>
 				<th th:text="${user.telefono}"></th>
-				<th> <a th:href="@{/editar/}+${user.id}">
-					<button type ="button" class="btn btn-default"><i class="far fa-edit"></i></button>
+				<th> <a th:href="@{/admin/newCliente/}+${user.id}">
+					<button type ="button" class="btn btn-default" >Editar</button>
 				</a>
-				<a th:href="@{/eliminar/}+${user.id}">
-					<button type ="button" class="btn btn-default"><i class="far fa-trash" aria-hidden="true"></i></button>
+				<a th:href="@{/admin/deletedCli/}+${user.id}">
+					<button type ="button" class="btn btn-default" >Eliminar</button>
 				</a>
 				</th>
 			</tr>

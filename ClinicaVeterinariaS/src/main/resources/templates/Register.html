@@ -27,63 +27,50 @@
 <body>
 
   <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
-    <div class="container">
-      <a class="navbar-brand" >Menú</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-          
-          <li sec:authorize="!isAuthenticated()" class="nav-item">
-          	<a class="nav-link" th:href="@{/auth/login}"><span class="fas fa-user"></span>Iniciar Sesión</a>
-          </li>	
-          <li sec:authorize="isAuthenticated()" class="nav-item">
-          <a class="nav-link" th:text ="${#authentication.getPrincipal().getUsername()}"></a>
-          </li>	
-          <li sec:authorize="isAuthenticated()" class="nav-item">
-          	<form class="form-inline" th:action="@{/logout}" method="post">
-          	<button class="btn btn-link" type="submit">Cerrar Sesión</button>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-
-  <!-- Navigation -->
-  <header class="masthead text-center text-white">
+ <section>
     <div class="masthead-content">
-      <div class="container">
+     <div class="container mt-4">
+      <div class="col-sm-6">
       <form th:action="@{/auth/register}" th:object="${user}" method="post">
+        <div class="card">
+       <div class="card-header"></div>
         <h1 class="masthead-heading mb-0">Formulario de Registro</h1>
+        <div class="card-body"></div>
+        <div class="form-group">
         <label>Nombre de Usuario: </label>
         <input type="text" class="form-control" placeholder="Username" name="username" id="username"/>
+        </div>
         </br>
+        <div class="form-group">
         <label>Password: </label>
         <input type="password" class="form-control" placeholder="Password" name="password" id="password"/> 
+        </div>
         </br>
+        <div class="form-group">
          <label>Nombre: </label>
         <input type="text" class="form-control" placeholder="Nombre" name="nombre" id="nombre"/>
+        </div>
         </br>
+        <div class="form-group">
          <label>Apellidos: </label>
         <input type="text" class="form-control" placeholder="Apellidos" name="apellidos" id="apellidos"/>
+        </div>
         </br>
+        <div class="form-group">
          <label>Teléfono: </label>
         <input type="text" class="form-control" placeholder="Telefono" name="telefono" id="telefono"/>
+        </div>
         </br>
         <input type="hidden" name="${ csrf.parameterName}" value="${ csrt.token}"/>
       </div>
-    </div>
-    <div class="bg-circle-1 bg-circle"></div>
-    <div class="bg-circle-2 bg-circle"></div>
-    <div class="bg-circle-3 bg-circle"></div>
-    <div class="bg-circle-4 bg-circle"></div>
-    
+   
     <input class="btn btn-lg btn-primary btn-block text.uppercase" id="boton" type="submit" value="Registrarme!"/>
-
   </form>
-  </header>
+  </div>
+  </div>
+  </div>
+  </section>
+ 
 
   <!-- Footer -->
   <footer class="py-5 bg-black">

@@ -44,7 +44,7 @@
           <a class="nav-link" th:text ="${#authentication.getPrincipal().getUsername()}"></a>
           </li>	
           <li sec:authorize="isAuthenticated()" class="nav-item">
-          	<form class="form-inline" th:action="@{/logout}" method="post">
+          	<a class="form-inline" th:action="@{/logout}" method="post"></a>
           	<button class="btn btn-link" type="submit">Cerrar Sesión</button>
           </li>
         </ul>
@@ -67,7 +67,7 @@
   <section>
       <div class="masthead-content">
       <div class="container">
-      <form th:action="@{/auth/register}" th:object="${user}" method="post">
+      <form th:action="@{editar}" th:object="${user}" method="post">
         <h1 class="masthead-heading mb-0">Editar mi perfil: </h1>
         <label>Password: </label>
         <input type="password" class="form-control" placeholder="Password" name="password" id="password"/> 

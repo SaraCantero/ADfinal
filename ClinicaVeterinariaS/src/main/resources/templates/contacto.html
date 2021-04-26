@@ -44,7 +44,7 @@
           <a class="nav-link" th:text ="${#authentication.getPrincipal().getUsername()}"></a>
           </li>	
           <li sec:authorize="isAuthenticated()" class="nav-item">
-          	<form class="form-inline" th:action="@{/logout}" method="post">
+          	<a class="form-inline" th:action="@{/logout}" method="post"></a>
           	<button class="btn btn-link" type="submit">Cerrar Sesión</button>
           </li>
         </ul>

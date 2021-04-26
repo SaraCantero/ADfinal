@@ -44,7 +44,7 @@
           <a class="nav-link" th:text ="${#authentication.getPrincipal().getUsername()}"></a>
           </li>	
           <li sec:authorize="isAuthenticated()" class="nav-item">
-          	<form class="form-inline" th:action="@{/logout}" method="post">
+          	<a class="form-inline" th:action="@{/logout}" method="post"></a>
           	<button class="btn btn-link" type="submit">Cerrar Sesión</button>
           </li>
         </ul>
@@ -68,7 +68,7 @@
   <section>
       <div class="masthead-content">
       <div class="container mt-4">
-      <a th:href="@{/newVeterinario}" class="btn btn-primary">Nuevo</a>
+    
   
   <table class="table">
 		<thead>
@@ -85,12 +85,18 @@
 				<td th:text="${user.apellidos}"></td>
 				<td th:text="${user.telefono}"></td>
 				<td>
-				<a class="btn btn-warning">Editar</a>
-				<a class="btn btn-danger">Eliminar</a>
+					<th> <a th:href="@{/admin/newVeterinario/}+${user.id}">
+					<button type ="button" class="btn btn-default" >Editar</button>
+				</a>
+				<a th:href="@{/admin/deletedVet/}+${user.id}">
+					<button type ="button" class="btn btn-default" >Eliminar</button>
+				</a>
 				</td>
 			</tr>
 		</tbody>
 	</table>
+	  <a th:href="@{/admin/newVeterinario}" >
+	  <button type="button" class="btn btn-default">Nuevo Veterinario</button></a>
 	</div>
 	</div>
 	</section>
