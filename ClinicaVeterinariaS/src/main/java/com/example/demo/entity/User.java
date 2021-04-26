@@ -36,11 +36,8 @@ public class User {
 	
 	private String role;
 
-	@OneToMany( cascade=CascadeType.ALL)
-	private List<Mascota>mascotas;
-	
-	
-
+//	@OneToMany( cascade=CascadeType.ALL)
+//	private List<Mascota>mascotas;
 
 	public User(int id, String username, String password, String apellidos, String telefono, String nombre,
 			boolean enabled, String role, List<Mascota> mascotas) {
@@ -53,7 +50,7 @@ public class User {
 		this.nombre = nombre;
 		this.enabled = enabled;
 		this.role = role;
-		this.mascotas = mascotas;
+//		this.mascotas = mascotas;
 	}
 
 	public User() {
@@ -83,8 +80,6 @@ public class User {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-
-
 
 	public int getId() {
 		return id;
@@ -126,13 +121,13 @@ public class User {
 		this.role = role;
 	}
 	
-	public List<Mascota> getMascotas() {
-		return mascotas;
-	}
-
-	public void setMascotas(List<Mascota> mascotas) {
-		this.mascotas = mascotas;
-	}
+//	public List<Mascota> getMascotas() {
+//		return mascotas;
+//	}
+//
+//	public void setMascotas(List<Mascota> mascotas) {
+//		this.mascotas = mascotas;
+//	}
 
 	
 	
