@@ -53,8 +53,11 @@ public class adminController {
 	}
 	
 	@GetMapping({"/newCliente", "/newCliente/{id}"})
-	public String agregar(Model model) {
-		model.addAttribute("user", new User());
+	public String agregar(@PathVariable(name="id", required=false) User id, Model model) {
+		if(id==null)
+			model.addAttribute("user", new User());
+		else
+			model.addAttribute("user", userService.findUserId(id));
 		return FORMCLI_VIEW;
 	}
 	
@@ -76,13 +79,12 @@ public class adminController {
 		
 	}
 	
-//	@GetMapping("/activarCli/{id}")
-//	public String activar(Model model) {
-//		model.addAttribute("user", new User());
-//		user.setEnabled(true);
-//		return "redirect:/admin/listaClientes";
-//		
-//	}
+	@GetMapping("/activarCli/{id}")
+	public String activar(@ModelAttribute("user") User user) {
+		user.setEnabled(true);
+		return "redirect:/admin/listaClientes";
+		
+	}
 
 	@GetMapping({"/newVeterinario", "/newVeterinario/{id}"})
 	public String agregarVet(Model model) {
@@ -107,15 +109,6 @@ public class adminController {
 			return "redirect:/admin/listaVeterinarios";
 			
 		}	
-	
-	
-	
-//	@GetMapping("/editar/{id}")
-//	public String editar(@PathVariable int id, Model model) {
-//		List<User>user=userRepository.findById(id);
-//		model.addAttribute("user", user);
-//		return FORMCLI_VIEW;
-//	}
 	
 	@GetMapping("/deletedCli/{id}")
 	public String deleteCliente(@PathVariable("id") int id,

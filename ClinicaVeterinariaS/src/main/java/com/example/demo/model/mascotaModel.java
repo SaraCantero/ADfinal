@@ -11,7 +11,7 @@ public class mascotaModel {
 	private String raza;
 	private Date fechaNacimiento;
 	private String foto;
-	private User idUser;
+	private User user;
 
 	public mascotaModel() {
 		// TODO Auto-generated constructor stub
@@ -28,7 +28,7 @@ public class mascotaModel {
 		this.raza = raza;
 		this.fechaNacimiento = fechaNacimiento;
 		this.foto = foto;
-		this.idUser = idUser;
+		this.user = user;
 	}
 
 
@@ -83,15 +83,19 @@ public class mascotaModel {
 
 
 
-	public User getIdUser() {
-		return idUser;
+	public User getUser() {
+		return user;
 	}
 
 
 
-	public void setIdCliente(User idUser) {
-		this.idUser = idUser;
+	public void setUser(User user) {
+		this.user = user;
 	}
+
+
+
+
 
 	
 	

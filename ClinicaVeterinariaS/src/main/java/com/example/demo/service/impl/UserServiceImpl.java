@@ -13,7 +13,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.entity.Mascota;
 import com.example.demo.repository.MascotaRepository;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.services.userService;
@@ -65,6 +64,7 @@ public class UserServiceImpl implements UserDetailsService, userService{
 	}
 	
 	
+	
 	public List<com.example.demo.entity.User> listarClientes(){
 		return userRepository.findByRole("ROLE_CLIENTE");
 	}
@@ -72,13 +72,6 @@ public class UserServiceImpl implements UserDetailsService, userService{
 	public List<com.example.demo.entity.User> listarVeterinarios(){
 		return userRepository.findByRole("ROLE_VETERINARIO");
 	}
-	
-	@Override
-	public List<com.example.demo.entity.User> listarId(com.example.demo.entity.User user){
-		return userRepository.findById(user.getId());
-	}
-	
-
 
 
 	@Override
@@ -117,9 +110,12 @@ public class UserServiceImpl implements UserDetailsService, userService{
 	}
 
 	@Override
-	public List<Mascota> listAllMascotas(com.example.demo.entity.User user) {
-		return mascotaRepository.findByUser(user);
+	public List<com.example.demo.entity.User> findUserId(com.example.demo.entity.User user) {
+		return userRepository.findById(user.getId());
 	}
+
+
+
 
 	
 	

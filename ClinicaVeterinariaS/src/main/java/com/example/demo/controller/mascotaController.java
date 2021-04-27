@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.example.demo.entity.Mascota;
-import com.example.demo.repository.MascotaRepository;
+import com.example.demo.model.mascotaModel;
 import com.example.demo.services.mascotaService;
+import com.example.demo.services.userService;
 
 @Controller
 @RequestMapping("/cli")
@@ -30,35 +30,42 @@ public class mascotaController {
 	private mascotaService mascotaService;
 	
 	@Autowired
-	@Qualifier("mascotaRepository")
-	private MascotaRepository mascotaRepository;
+	@Qualifier("userService")
+	private userService userService;
 	
 	@GetMapping("/listaMascotas")
 	public ModelAndView listaMascotas() {
 		ModelAndView mav=new ModelAndView(MASCOTAS_VIEW);
-		mav.addObject("listaMascotas", mascotaService.listAllMascotas());
+		mav.addObject("mascotas", mascotaService.listarMascotas());
 		return mav;
 	}
 	
+
 	@GetMapping({"/newMascota", "/newMascota/{id}"})
-	public String añadir(Model model) {
-		model.addAttribute("mascota", new Mascota());
+	public String añadirMasc(@PathVariable(name="id", required=false) Integer id, 
+			Model model) {
+		model.addAttribute("users", userService.listarClientes() );
+		if(id==null)
+			model.addAttribute("mascota", new mascotaModel());
+		else
+			model.addAttribute("mascota", mascotaService.buscaMascota(id));
 		return FORMMASC_VIEW;
 	}
 
 	
 	@PostMapping("/addMascota")
-	public String guardar(@ModelAttribute("mascota") Mascota mascota, BindingResult bindingResult
+	public String guardar( @ModelAttribute("mascota") mascotaModel mascotaModel, BindingResult bindingResult
 			,RedirectAttributes flash, Model model) {
-		if(bindingResult.hasErrors())
-			return FORMMASC_VIEW;
+		if(bindingResult.hasErrors()) {
+			model.addAttribute("users", userService.listarClientes());
+			return FORMMASC_VIEW;}
 		else {
-			if(mascota.getId()==0) {
-				mascotaService.añadirMascota(mascota);
+			if(mascotaModel.getId()==0) {
+				mascotaService.añadirMascota(mascotaModel);
 				flash.addFlashAttribute("success", "Mascota registrada correctamente");
 			}
 			else {
-				mascotaService.editarMascota(mascota);
+				mascotaService.editarMascota(mascotaModel);
 				flash.addFlashAttribute("success", "Mascota modificada");			}
 		}
 		return "redirect:/cli/listaMascotas";
@@ -66,7 +73,7 @@ public class mascotaController {
 	}
 	
 	@GetMapping("/deletedMasc/{id}")
-	public String deleteMAscota(@PathVariable("id") int id,
+	public String deleteMascota(@PathVariable("id") int id,
 			RedirectAttributes flash) {
 		if(mascotaService.eliminarMascota(id)==0)
 			flash.addFlashAttribute("success", "Mascota eliminada");

@@ -25,48 +25,14 @@
 
 <body>
 
-  <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
-    <div class="container">
-      <a class="navbar-brand" >Menú</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-           <li sec:authorize="!isAuthenticated()" class="nav-item">
-          	<a class="nav-link" th:href="@{/auth/registerForm}"><span class="fas fa-sing-in-alt"></span>Registrarse</a>
-          </li>
-          <li sec:authorize="!isAuthenticated()" class="nav-item">
-          	<a class="nav-link" th:href="@{/auth/login}"><span class="fas fa-user"></span>Iniciar Sesión</a>
-          </li>	
-          <li sec:authorize="isAuthenticated()" class="nav-item">
-          <a class="nav-link" th:text ="${#authentication.getPrincipal().getUsername()}"></a>
-          </li>	
-         <li sec:authorize="isAuthenticated()" class="nav-item">
-          	<form class="form-inline" th:action="@{/logout}" method="post">
-          	<button class="btn btn-link" type="submit">Cerrar Sesión</button>
-          	</form>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-  <header class="masthead text-center text-white">
+<header th:replace="clinicaZarpas::header"></header>
+
+  <section class="masthead text-center text-white">
     <div class="masthead-content">
       <div class="container">
         <h1 class="masthead-heading mb-0">Listado de Veterinarios</h1>
       </div>
     </div>
-    <div class="bg-circle-1 bg-circle"></div>
-    <div class="bg-circle-2 bg-circle"></div>
-    <div class="bg-circle-3 bg-circle"></div>
-    <div class="bg-circle-4 bg-circle"></div>
-  </header>
-  
-  
-  <!-- Navigation -->
-  <section>
       <div class="masthead-content">
       <div class="container mt-4">
     

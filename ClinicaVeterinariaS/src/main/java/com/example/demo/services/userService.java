@@ -23,8 +23,10 @@ public interface userService {
 		public abstract User añadirVeterinario(User user);
 		
 		public abstract User registrar(User user);
-		List<User> listarId(User user);
-		public abstract List<Mascota> listAllMascotas(User user);
+		
+		public abstract List<User> findUserId(User user);
+		
+		
 		
 		}
 		
