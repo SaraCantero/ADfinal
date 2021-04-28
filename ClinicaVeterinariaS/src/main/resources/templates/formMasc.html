@@ -26,7 +26,7 @@
 <body>
 <header th:replace="clinicaZarpas::header"></header>
 
-  <section class="masthead text-center text-white">
+  <section class="masthead text-center text-pink">
     <div class="masthead-content">
       <div class="container">
         <h1 class="masthead-heading mb-0">Listado de mascotas</h1>
@@ -35,7 +35,7 @@
       <div class="masthead-content">
       <div class="container mt-4">
       <div class="col-sm-6">
-      <form th:action="@{/cli/añadirMasc}" th:object=${mascota} method="post">
+      <form th:action="@{addMascota}" th:object=${mascota} method="post">
       	<div class="card">
       	<div class="card-header"></div>
       	<h3 th:text="${mascota.id != 0} ? 'Editar mascota' : 'Nueva  mascota'"> Nueva Mascota </h3>

@@ -109,9 +109,10 @@ public class UserServiceImpl implements UserDetailsService, userService{
 		return userRepository.save(user);
 	}
 
+	
 	@Override
-	public List<com.example.demo.entity.User> findUserId(com.example.demo.entity.User user) {
-		return userRepository.findById(user.getId());
+	public com.example.demo.entity.User findByUserId(int id) {
+		return userRepository.findById(id);
 	}
 
 

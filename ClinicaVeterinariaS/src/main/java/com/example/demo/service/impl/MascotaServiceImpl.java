@@ -1,14 +1,13 @@
 package com.example.demo.service.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.configuration.DozerConfig;
 import com.example.demo.entity.Mascota;
 import com.example.demo.model.mascotaModel;
 import com.example.demo.repository.MascotaRepository;
@@ -22,14 +21,13 @@ public class MascotaServiceImpl implements mascotaService {
 	private MascotaRepository mascotaRepository;
 	
 	@Autowired 
-	@Qualifier("dozer")
-	private DozerConfig dozer;
+	private DozerBeanMapper dozer;
 
 	
-	@Override
+	/*@Override
 	public Mascota añadirMascota(mascotaModel mascotaModel) {
 		return mascotaRepository.save(transform(mascotaModel));
-	}
+	}*/
 
 	@Override
 	public int eliminarMascota(int id) {
@@ -42,9 +40,14 @@ public class MascotaServiceImpl implements mascotaService {
 		return mascotaRepository.save(transform(mascotaModel));
 	}
 
-	@Override
+	/*@Override
 	public List<mascotaModel> listarMascotas() {
-		return mascotaRepository.findAll().stream().map(c->transform(c)).collect(Collectors.toList());
+		return mascotaRepository.findAll().stream().
+				map(c->transform(c)).collect(Collectors.toList());
+	}*/
+	
+	public List<Mascota> listarMascotas(){
+		return mascotaRepository.findAll();
 	}
 
 
@@ -63,6 +66,13 @@ public class MascotaServiceImpl implements mascotaService {
 	public mascotaModel buscaMascota(int id) {
 		return transform(mascotaRepository.findById(id).orElse(null));
 	}
+
+	@Override
+	public Mascota añadirMascota(Mascota mascota) {
+		return mascotaRepository.save(mascota);
+		
+	}
+
 
 
 }

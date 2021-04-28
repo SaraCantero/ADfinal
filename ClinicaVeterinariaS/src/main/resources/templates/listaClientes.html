@@ -49,9 +49,11 @@
 				<th th:text="${user.nombre}"></th>
 				<th th:text="${user.apellidos}"></th>
 				<th th:text="${user.telefono}"></th>
-				<th> <a th:href="@{/admin/activarCli/}+${user.id}">
-					<button type ="button" class="btn btn-default" >Activar</button>
-				</a>
+				<th>
+				<form class="button" th:action="@{/admin/activarCli/}+${user.id}" method="POST">
+				<input class="btn btn-success" type="submit" value="Activar"/>
+				</form>
+				</th>
 				<th> <a th:href="@{/admin/newCliente/}+${user.id}">
 					<button type ="button" class="btn btn-default" >Editar</button>
 				</a>
@@ -62,10 +64,11 @@
 			</tr>
 		</tbody>
 	</table>
-	<div class="alert alert-success" th:if="${success!=null}" th:text="${success}"></div>
-	<a th:href="@{/admin/newCliente}" class="btn btn-primary">Nuevo Cliente</a>
-	</div>
-	</div>
+	
+	<form class="button" th:action="@{/admin/newCliente}" method="POST">
+	<input class="btn btn-success" type="submit" value="Nuevo Cliente "/>
+	</form>
+	
 	</section>
 
   <!-- Footer -->

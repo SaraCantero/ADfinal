@@ -23,8 +23,7 @@ public interface userService {
 		public abstract User añadirVeterinario(User user);
 		
 		public abstract User registrar(User user);
-		
-		public abstract List<User> findUserId(User user);
+		User findByUserId(int id);
 		
 		
 		

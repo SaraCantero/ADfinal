@@ -54,11 +54,10 @@
 				<th th:text="${mascota.raza}"></th>
 				<th th:text="${mascota.fechaNacimiento}"></th>
 				<th th:text="${mascota.foto}"></th>
-				<th th:text="${mascota.idUser}"></th>
-				<th> <a th:href="@{/cli/newMascota/}+${user.id}">
+				<th> <a th:href="@{/cli/newMascota/}+${mascota.id}">
 					<button type ="button" class="btn btn-default" >Editar</button>
 				</a>
-				<a th:href="@{/cli/deletedMasc/}+${user.id}">
+				<a th:href="@{/cli/deletedMasc/}+${mascota.id}">
 					<button type ="button" class="btn btn-default" >Eliminar</button>
 				</a>
 				</th>

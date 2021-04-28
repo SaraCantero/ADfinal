@@ -15,5 +15,5 @@ public interface UserRepository extends JpaRepository <User, Serializable> {
 	
 	public List<User> findByRole(String role);
 	
-	public List<User> findById(int id);
+	public com.example.demo.entity.User findById(int id);
 }
