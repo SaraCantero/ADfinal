@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.entity.Mascota;
+import com.example.demo.entity.User;
 import com.example.demo.model.mascotaModel;
 import com.example.demo.repository.MascotaRepository;
 import com.example.demo.services.mascotaService;
@@ -46,10 +47,15 @@ public class MascotaServiceImpl implements mascotaService {
 				map(c->transform(c)).collect(Collectors.toList());
 	}*/
 	
+	@Override
 	public List<Mascota> listarMascotas(){
 		return mascotaRepository.findAll();
 	}
-
+	
+	@Override
+	public List<Mascota> listarMascotasPorCliente(User user){
+		return mascotaRepository.findByUser(user);
+	}
 
 	@Override
 	public mascotaModel transform(Mascota mascota) {
@@ -62,15 +68,23 @@ public class MascotaServiceImpl implements mascotaService {
 		return dozer.map(mascotaModel, Mascota.class);
 	}
 	
+	
 	@Override
-	public mascotaModel buscaMascota(int id) {
-		return transform(mascotaRepository.findById(id).orElse(null));
+	public Mascota findById(int id) {
+		return mascotaRepository.findById(id);
 	}
+
 
 	@Override
 	public Mascota añadirMascota(Mascota mascota) {
 		return mascotaRepository.save(mascota);
 		
+	}
+
+	@Override
+	public mascotaModel buscaMascota(int id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

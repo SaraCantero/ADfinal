@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 
 <head>
 
@@ -26,17 +26,18 @@
 <body>
 
 <header th:replace="clinicaZarpas::header"></header>
-
+    
+    </header>
   <section class="masthead text-center text-white">
     <div class="masthead-content">
       <div class="container">
         <h1 class="masthead-heading mb-0">Listado de Veterinarios</h1>
       </div>
     </div>
-      <div class="masthead-content">
-      <div class="container mt-4">
-    
+  </section>
   
+   <div class="masthead-content">
+      <div class="container">
   <table class="table">
 		<thead>
 			<tr>
@@ -62,10 +63,10 @@
 			</tr>
 		</tbody>
 	</table>
+	</div>
+	</div>
 	  <a th:href="@{/admin/newVeterinario}" >
 	  <button type="button" class="btn btn-default">Nuevo Veterinario</button></a>
-	</div>
-	</div>
 	</section>
 
   <!-- Footer -->

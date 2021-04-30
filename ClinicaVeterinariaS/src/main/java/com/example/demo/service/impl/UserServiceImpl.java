@@ -13,6 +13,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.entity.Mascota;
 import com.example.demo.repository.MascotaRepository;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.services.userService;
@@ -38,7 +39,7 @@ public class UserServiceImpl implements UserDetailsService, userService{
 			builder=User.withUsername(username);
 			builder.password(usuario.getPassword());
 			builder.authorities(new SimpleGrantedAuthority(usuario.getRole()));
-		}//más de un rol, cambiar. Recorrer la lista e ir añadiendo cada uno de lso permisos
+		}
 		else
 			throw new UsernameNotFoundException("Usuario no encontrado");
 		return builder.build();
@@ -54,6 +55,8 @@ public class UserServiceImpl implements UserDetailsService, userService{
 		user.setEnabled(true);
 		return userRepository.save(user);
 	}
+	
+
 	
 	@Override
 	public com.example.demo.entity.User añadirVeterinario(com.example.demo.entity.User user) {
@@ -115,7 +118,11 @@ public class UserServiceImpl implements UserDetailsService, userService{
 		return userRepository.findById(id);
 	}
 
-
+	
+	@Override
+	public com.example.demo.entity.User findByUsername(String username) {
+		return userRepository.findByUsername(username);
+	}
 
 
 	

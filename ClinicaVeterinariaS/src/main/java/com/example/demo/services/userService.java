@@ -24,6 +24,7 @@ public interface userService {
 		
 		public abstract User registrar(User user);
 		User findByUserId(int id);
+		public abstract User findByUsername(String username);
 		
 		
 		

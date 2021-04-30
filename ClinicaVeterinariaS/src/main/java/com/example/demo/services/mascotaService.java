@@ -16,6 +16,10 @@ public interface mascotaService {
 	public abstract mascotaModel transform(Mascota mascota);
 	public abstract mascotaModel buscaMascota(int id);
 	public abstract Mascota añadirMascota(Mascota mascota);
+	List<Mascota> listarMascotasPorCliente(User user);
+	Mascota findById(int id);
+
+	
 	
 	
 	

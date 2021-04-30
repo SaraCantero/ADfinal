@@ -43,7 +43,7 @@
 				<th>RAZA </th>
 				<th>FECHA NACIMIENTO </th>
 				<th>FOTO </th>
-				<th>DUEÑO </th>
+			
 			</tr>
 		</thead>
 
@@ -60,13 +60,16 @@
 				<a th:href="@{/cli/deletedMasc/}+${mascota.id}">
 					<button type ="button" class="btn btn-default" >Eliminar</button>
 				</a>
+				<a th:href="@{/cli/pedirCita/}+${mascota.id}">
+					<button type ="button" class="btn btn-default" >Pedir Cita</button>
+				</a>
 				</th>
 			</tr>
 		</tbody>
 	</table>
-	<a th:href="@{/cli/newMascota}" class="btn btn-primary">Añadir Mascota</a>
-	</div>
-	</div>
+	<form class="button" th:action="@{/cli/newMascota/}" method="POST">
+				<input class="btn btn-success" type="submit" value="Añadir nueva mascota"/>
+				</form>
 	</section>
 
   <!-- Footer -->

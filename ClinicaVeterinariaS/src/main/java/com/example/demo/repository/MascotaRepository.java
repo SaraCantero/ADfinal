@@ -12,5 +12,7 @@ import com.example.demo.entity.User;
 @Repository("mascotaRepository")
 public interface MascotaRepository extends JpaRepository<Mascota, Serializable> {
 	public abstract List<Mascota> findByUser(User user);
+	public abstract Mascota findById(int id);
+
 
 }

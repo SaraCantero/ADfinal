@@ -50,7 +50,7 @@ public class User {
 		this.nombre = nombre;
 		this.enabled = enabled;
 		this.role = role;
-//		this.mascotas = mascotas;
+		this.mascotas = mascotas;
 	}
 
 	public User() {
@@ -121,13 +121,13 @@ public class User {
 		this.role = role;
 	}
 	
-//	public List<Mascota> getMascotas() {
-//		return mascotas;
-//	}
-//
-//	public void setMascotas(List<Mascota> mascotas) {
-//		this.mascotas = mascotas;
-//	}
+	public List<Mascota> getMascotas() {
+		return mascotas;
+	}
+
+	public void setMascotas(List<Mascota> mascotas) {
+		this.mascotas = mascotas;
+	}
 
 	
 	

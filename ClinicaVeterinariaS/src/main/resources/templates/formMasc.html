@@ -26,16 +26,25 @@
 <body>
 <header th:replace="clinicaZarpas::header"></header>
 
-  <section class="masthead text-center text-pink">
+  <header class="masthead text-center text-white">
     <div class="masthead-content">
       <div class="container">
         <h1 class="masthead-heading mb-0">Listado de mascotas</h1>
       </div>
     </div>
+       <div class="bg-circle-1 bg-circle"></div>
+    <div class="bg-circle-2 bg-circle"></div>
+    <div class="bg-circle-3 bg-circle"></div>
+    <div class="bg-circle-4 bg-circle"></div>
+  </header>
+  
+  
+   <!-- Navigation -->
+  <section>
       <div class="masthead-content">
       <div class="container mt-4">
       <div class="col-sm-6">
-      <form th:action="@{addMascota}" th:object=${mascota} method="post">
+      <form th:action="@{/cli/addMascota}" th:object=${mascota} method="post">
       	<div class="card">
       	<div class="card-header"></div>
       	<h3 th:text="${mascota.id != 0} ? 'Editar mascota' : 'Nueva  mascota'"> Nueva Mascota </h3>

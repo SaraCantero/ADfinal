@@ -39,6 +39,10 @@ public class controlador1 {
 		return "admin";
 	}
 
+	@GetMapping("/cli")
+	public String listaMasc() {
+		return "listaMascotas";
+	}
 	
 	
 }
