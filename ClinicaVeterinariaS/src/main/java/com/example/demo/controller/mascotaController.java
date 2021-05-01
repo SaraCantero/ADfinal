@@ -108,22 +108,23 @@ public class mascotaController {
 	//ir a formulario de citas
 	   @PostMapping("/newCita")
 	    public String nuevaCita(Model model, @RequestParam(name="error",required=false) String error,RedirectAttributes flash){
-	       model.addAttribute("mascotas", mascotaService.listarMascotas());
-	       model.addAttribute("users", userService.listarVeterinarios());
-		   model.addAttribute("cita",new Cita());
-	       model.addAttribute("error",error);
-	        return FORMCITA_VIEW;
+		      	model.addAttribute("cita",new Cita());
+		        model.addAttribute("users", userService.listarVeterinarios());
+		        model.addAttribute("mascotas", mascotaService.listarMascotas());
+		      	model.addAttribute("error",error);
+		        flash.addFlashAttribute("success", "Cita guardada");
+		        return FORMCITA_VIEW;
 	    }
 	   
 	   
-	@PostMapping("/pedirCita")
+	@PostMapping("/addCita")
 	public String pedirCita(RedirectAttributes flash, @ModelAttribute("cita") Cita cita, BindingResult bindingResult) {
 			if(bindingResult.hasErrors()) {
 				flash.addFlashAttribute("error", "Error al pedir esta cita");
 				return FORMCITA_VIEW;}
 			else {
 				citaService.añadirCita(cita);
-				return "redirect:/admin/listaCitas";
+				return "redirect:/cli/listaMascotas";
 			}
 	}
 	

@@ -25,30 +25,18 @@
 <body>
 
 <header th:replace="clinicaZarpas::header"></header>
-  <header class="masthead text-center text-white">
-    <div class="masthead-content">
-      <div class="container">
-        <h1 class="masthead-heading mb-0">Listado de clientes</h1>
-      </div>
-    </div>
-    <div class="bg-circle-1 bg-circle"></div>
-    <div class="bg-circle-2 bg-circle"></div>
-    <div class="bg-circle-3 bg-circle"></div>
-    <div class="bg-circle-4 bg-circle"></div>
-  </header>
-  
-  
   <!-- Navigation -->
   <section>
       <div class="masthead-content">
       <div class="container mt-4">
       <div class="col-sm-6">
-      <form th:action="@{/admin/addCliente}" th:object=${user} method="post">
+      <form th:action="@{/cli/addCita}" th:object=${cita} method="post">
       	<div class="card">
       	<div class="card-header"></div>
-      	<h1 class="masthead-heading mb-0">Nueva cita</h1>
-      	
-      	<div class="form-group">
+      	 	<h3 th:text="${cita.id != 0} ? 'Editar cita' : 'Nueva  cita'"> Nueva Cita </h3>
+      	 	<input type="hidden" th:field="*{id}" id="id">
+      	 	<div class="card-body"></div>
+      	 	   	<div class="form-group">
       		<label for="mascota">Elegir mascota</label>
       		<select class="form-control selectpicker" th:field="*{mascota.id}" id="mascota">
       			<option th:each="mascota: ${mascotas}"
@@ -58,7 +46,7 @@
       		</select>
       	</div>
       	<div class="form-group">
-      		<label for="mascota">Elegir veterinario</label>
+      		<label for="user">Elegir veterinario</label>
       		<select class="form-control selectpicker" th:field="*{user.id}" id="user">
       			<option th:each="user: ${users}"
       					th:value="${user.id}"
@@ -67,22 +55,29 @@
       		</select>
       	</div>
       		<div class="form-group">
-      			<label for="fecha">Fecha: </label>
-      			<input th:field="*{fecha}" type="date" id="fecha" class="form-control" placeholder="Introduce la fecha deseada"/>
+      			<label for="fecha">Fecha </label>
+      			<input th:field="*{fecha}" type="date" id="fecha" class="form-control" placeholder="YYYY-MM-DD"/>
       		</div>
       		<div class="form-group">
-      			<label for="informe">Informe: </label>
+      			<label for="informe">Informe </label>
       			<input th:field="*{informe}" type="text" id="informe" class="form-control"/>
       		</div>
       		<div class="form-group">
-      			<label for="motivo">Motivo: </label>
+      			<label for="motivo">Motivo </label>
       			<input th:field="*{motivo}" type="text" id="motivo" class="form-control"/>
+      		</div>	
+      			<label for="realizada">Realizada </label>
       		</div>
-      		<div class="form-group">	
-      			<label for="realizada">Realizada: </label>
-      			<input th:field="*{realizada}" type="boolean" id="realizada" class="form-control"/>
+      		<div class="form-check-inline">
+      		<label class="form-check-label"><input type="radio"
+      		class="form-check-input" name="option" th:field="*{realizada}"
+      		id="Si" value=true>Si</label>
       		</div>
- 
+      		<div class="form-check-inline">
+      		<label class="form-check-label"><input type="radio"
+      		class="form-check-input" name="option" th:field="*{realizada}"
+      		id="No" value=false>No</label>
+      		</div>
       		</div>
       	<input type="submit" value="Guardar" class="btn btn-success">
       	</form>
