@@ -25,7 +25,18 @@
 <body>
 
 <header th:replace="clinicaZarpas::header"></header>
-
+  <header class="masthead text-center text-white">
+    <div class="masthead-content">
+      <div class="container">
+        <h1 class="masthead-heading mb-0">Listado de clientes</h1>
+      </div>
+    </div>
+    <div class="bg-circle-1 bg-circle"></div>
+    <div class="bg-circle-2 bg-circle"></div>
+    <div class="bg-circle-3 bg-circle"></div>
+    <div class="bg-circle-4 bg-circle"></div>
+  </header>
+  
   
   <!-- Navigation -->
   <section>
@@ -35,29 +46,43 @@
       <form th:action="@{/admin/addCliente}" th:object=${user} method="post">
       	<div class="card">
       	<div class="card-header"></div>
-      	<h3 th:text="${user.id != 0} ? 'Editar cliente' : 'Nuevo cliente'"> Nuevo Cliente </h3>
-      	<input type="hidden" th:field="*{id}" id="id">
-      	<div class="card-body"></div>
+      	<h1 class="masthead-heading mb-0">Nueva cita</h1>
+      	
+      	<div class="form-group">
+      		<label for="mascota">Elegir mascota</label>
+      		<select class="form-control selectpicker" th:field="*{mascota.id}" id="mascota">
+      			<option th:each="mascota: ${mascotas}"
+      					th:value="${mascota.id}"
+      					th:text="${mascota.nombre}">
+      			</option>
+      		</select>
+      	</div>
+      	<div class="form-group">
+      		<label for="mascota">Elegir veterinario</label>
+      		<select class="form-control selectpicker" th:field="*{user.id}" id="user">
+      			<option th:each="user: ${users}"
+      					th:value="${user.id}"
+      					th:text="${user.nombre}">
+      			</option>
+      		</select>
+      	</div>
       		<div class="form-group">
-      			<label for="nombre">Nombre: </label>
-      			<input th:field="*{nombre}" type="text" id="nombre" class="form-control" placeholder="Introduce tu nombre"/>
+      			<label for="fecha">Fecha: </label>
+      			<input th:field="*{fecha}" type="date" id="fecha" class="form-control" placeholder="Introduce la fecha deseada"/>
       		</div>
       		<div class="form-group">
-      			<label for="apellidos">Apellidos: </label>
-      			<input th:field="*{apellidos}" type="text" id="apellidos" class="form-control"/>
+      			<label for="informe">Informe: </label>
+      			<input th:field="*{informe}" type="text" id="informe" class="form-control"/>
       		</div>
       		<div class="form-group">
-      			<label for="telefono">Teléfono: </label>
-      			<input th:field="*{telefono}" type="number" id="telefono" class="form-control"/>
+      			<label for="motivo">Motivo: </label>
+      			<input th:field="*{motivo}" type="text" id="motivo" class="form-control"/>
       		</div>
       		<div class="form-group">	
-      			<label for="username">Nombre de usuario: </label>
-      			<input th:field="*{username}" type="text" id="username" class="form-control"/>
+      			<label for="realizada">Realizada: </label>
+      			<input th:field="*{realizada}" type="boolean" id="realizada" class="form-control"/>
       		</div>
-      		<div class="form-group">	
-      			<label for="password">Contraseña: </label>
-      			<input th:field="*{password}" type="password" id="password" class="form-control"/>
-      		</div>
+ 
       		</div>
       	<input type="submit" value="Guardar" class="btn btn-success">
       	</form>

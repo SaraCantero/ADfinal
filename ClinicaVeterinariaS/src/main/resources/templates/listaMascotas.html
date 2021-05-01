@@ -11,15 +11,16 @@
 
   <title>GestionVeterinaria</title>
 
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css">
   <!-- Bootstrap core CSS -->
-  <link th:href="@{vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+  <link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
 
   <!-- Custom fonts for this template -->
   <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
 
   <!-- Custom styles for this template -->
-  <link th:href="@{css/one-page-wonder.min.css}" rel="stylesheet">
+  <link th:href="@{/css/one-page-wonder.min.css}" rel="stylesheet">
 
 </head>
 
@@ -29,7 +30,7 @@
   <section class="masthead text-center text-white">
     <div class="masthead-content">
       <div class="container">
-        <h1 class="masthead-heading mb-0">Mascotas registradas</h1>
+        <h1 class="masthead-heading mb-0">Mis mascotas</h1>
       </div>
     </div>
       <div class="masthead-content">
@@ -55,20 +56,27 @@
 				<th th:text="${mascota.fechaNacimiento}"></th>
 				<th th:text="${mascota.foto}"></th>
 				<th> <a th:href="@{/cli/newMascota/}+${mascota.id}">
-					<button type ="button" class="btn btn-default" >Editar</button>
+					<button type ="button" class="btn btn-warning" >Editar</button>
 				</a>
+				<th>
+				
 				<a th:href="@{/cli/deletedMasc/}+${mascota.id}">
-					<button type ="button" class="btn btn-default" >Eliminar</button>
-				</a>
-				<a th:href="@{/cli/pedirCita/}+${mascota.id}">
-					<button type ="button" class="btn btn-default" >Pedir Cita</button>
+					<button type ="button" class="btn btn-danger" >Eliminar</button>
 				</a>
 				</th>
+			
 			</tr>
 		</tbody>
 	</table>
+	<div class="alert alert-success" th:if="${success!=null}"
+	th:text="${success}"></div>
+	<div class="alert alert-danger" th:if="${error!=null}"
+	th:text="${error}"></div>
 	<form class="button" th:action="@{/cli/newMascota/}" method="POST">
 				<input class="btn btn-success" type="submit" value="Añadir nueva mascota"/>
+				</form>
+	<form class="button" th:action="@{/cli/newCita/}" method="POST">
+				<input class="btn btn-success" type="submit" value="Pedir una cita"/>
 				</form>
 	</section>
 
@@ -80,8 +88,8 @@
     <!-- /.container -->
   </footer>
   <!-- Bootstrap core JavaScript -->
-  <script th:src="@{vendor/jquery/jquery.min.js}"></script>
-  <script th:src="@{vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+  <script th:src="@{/vendor/jquery/jquery.min.js}"></script>
+  <script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
 
 </body>
 

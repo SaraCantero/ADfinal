@@ -1,7 +1,5 @@
 package com.example.demo.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -21,6 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.example.demo.entity.Cita;
 import com.example.demo.entity.Mascota;
 import com.example.demo.entity.User;
+import com.example.demo.services.citaService;
 import com.example.demo.services.mascotaService;
 import com.example.demo.services.userService;
 
@@ -31,6 +30,7 @@ public class mascotaController {
 	private static final String MASCOTAS_VIEW="listaMascotas";
 	private static final String FORMMASC_VIEW="formMasc";
 	private static final String FORMCITA_VIEW="formCita";
+	private static final String FORMCLI_VIEW="formCli";
 
 
 	@Autowired
@@ -40,6 +40,10 @@ public class mascotaController {
 	@Autowired
 	@Qualifier("userService")
 	private userService userService;
+	
+	@Autowired
+	@Qualifier("citaService")
+	private citaService citaService;
 	
 	//listar Mascotas
 	@GetMapping("/listaMascotas")
@@ -71,15 +75,18 @@ public class mascotaController {
 	
 	//guardar mascota
 		@PostMapping("/addMascota")
-		public String guardar(@ModelAttribute("mascota") Mascota mascota, BindingResult bindingResult) {
-			if(bindingResult.hasErrors())
-				return FORMMASC_VIEW;
+		public String guardar(RedirectAttributes flash, @ModelAttribute("mascota") Mascota mascota, BindingResult bindingResult) {
+			if(bindingResult.hasErrors()) {
+				flash.addFlashAttribute("error", "Error en el formulario, no se ha añadido la mascota");
+				return FORMMASC_VIEW;}
+			
 			else {
 				UserDetails userDetails= (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		        String username = userDetails.getUsername();
 		        User user =  userService.findByUsername(username);
 		        mascota.setUser(user);
 		        mascotaService.añadirMascota(mascota);
+		        flash.addFlashAttribute("success", "Mascota añadida o editada correctamente");
 		        return "redirect:/cli/listaMascotas";
 			}
 			
@@ -96,16 +103,32 @@ public class mascotaController {
 	}
 	
 	//pedir cita
-	@PostMapping("/pedirCita/{id}")
-	public String pedirCita(@ModelAttribute("cita") Cita cita, BindingResult bindingResult) {
-			if(bindingResult.hasErrors())
-				return FORMCITA_VIEW;
-			else {;
-		        
+	
+	
+	//ir a formulario de citas
+	   @PostMapping("/newCita")
+	    public String nuevaCita(Model model, @RequestParam(name="error",required=false) String error,RedirectAttributes flash){
+	       model.addAttribute("mascotas", mascotaService.listarMascotas());
+	       model.addAttribute("users", userService.listarVeterinarios());
+		   model.addAttribute("cita",new Cita());
+	       model.addAttribute("error",error);
+	        return FORMCITA_VIEW;
+	    }
+	   
+	   
+	@PostMapping("/pedirCita")
+	public String pedirCita(RedirectAttributes flash, @ModelAttribute("cita") Cita cita, BindingResult bindingResult) {
+			if(bindingResult.hasErrors()) {
+				flash.addFlashAttribute("error", "Error al pedir esta cita");
+				return FORMCITA_VIEW;}
+			else {
+				citaService.añadirCita(cita);
+				return "redirect:/admin/listaCitas";
 			}
-		return null;}
+	}
 	
 	
+
 	
 }
 
