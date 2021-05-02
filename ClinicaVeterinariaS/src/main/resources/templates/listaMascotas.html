@@ -60,9 +60,25 @@
 				</a>
 				<th>
 				
+				<div class="container">
+				<br>
+				<a href="#ventana" class="btn btn-danger" data-toggle="modal">Eliminar</a>
+				<div class="modal fade" id="ventana">
+				<div class="modal-dialog">
+				<div class="modal-content">
+				<div class="modal-header">
+				<h4 class="modal-tittle">¿Desea eliminar esta mascota?</h4>
+				</div>
+				<div class="modal-body">
 				<a th:href="@{/cli/deletedMasc/}+${mascota.id}">
 					<button type ="button" class="btn btn-danger" >Eliminar</button>
 				</a>
+				<button type="button" class="btn btn-primary " data-dismiss="modal">Cancelar</button>
+				</div>
+				</div>
+				</div>
+				</div>
+				</div>
 				</th>
 			
 			</tr>
