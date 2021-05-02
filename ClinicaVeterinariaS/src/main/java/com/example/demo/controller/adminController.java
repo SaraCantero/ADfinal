@@ -121,7 +121,7 @@ public class adminController {
 	}
 	
 	//Ir a formulario de nuevo veterinario
-    @GetMapping("/newVeterinario")
+    @PostMapping("/newVeterinario")
     public String agregarVet(Model model, @RequestParam(name="error",required=false) String error,RedirectAttributes flash){
         model.addAttribute("user",new User());
         model.addAttribute("error",error);

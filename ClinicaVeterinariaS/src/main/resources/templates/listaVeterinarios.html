@@ -34,7 +34,6 @@
         <h1 class="masthead-heading mb-0">Listado de Veterinarios</h1>
       </div>
     </div>
-  </section>
   
    <div class="masthead-content">
       <div class="container">
@@ -63,10 +62,10 @@
 			</tr>
 		</tbody>
 	</table>
-	</div>
-	</div>
-	  <a th:href="@{/admin/newVeterinario}" >
-	  <button type="button" class="btn btn-success">Nuevo Veterinario</button></a>
+	
+	<form class="button" th:action="@{/admin/newVeterinario}" method="POST">
+	<input class="btn btn-success" type="submit" value="Nuevo Veterinario "/>
+	</form>
 	</section>
 
   <!-- Footer -->
