@@ -1,0 +1,154 @@
+--phpMyAdmin SQL Dump
+-- version 5.0.2
+-- https://www.phpmyadmin.net/
+--
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 03-05-2021 a las 13:06:49
+-- Versión del servidor: 10.4.14-MariaDB
+-- Versión de PHP: 7.4.10
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Base de datos: `gestionveterinaria`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `cita`
+--
+
+CREATE TABLE `cita` (
+  `id` int(11) NOT NULL,
+  `fecha` date DEFAULT NULL,
+  `informe` varchar(255) DEFAULT NULL,
+  `motivo` varchar(100) DEFAULT NULL,
+  `realizada` bit(1) DEFAULT NULL,
+  `id_mascota` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `cita`
+--
+
+INSERT INTO `cita` (`id`, `fecha`, `informe`, `motivo`, `realizada`, `id_mascota`, `id_user`) VALUES
+(25, '2021-08-05', '', 'Castración', b'0', 1, 9),
+(26, '2020-06-06', 'Preanestesia', 'Castración', b'0', 1, 12),
+(27, '2020-01-01', 'Prueba', 'Prueba', b'0', 19, 9),
+(28, '2021-02-02', 'a', 'a', b'0', 23, 12),
+(29, '2020-02-09', 'b', 'b', b'1', 1, 12);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `hibernate_sequence`
+--
+
+CREATE TABLE `hibernate_sequence` (
+  `next_val` bigint(20) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `hibernate_sequence`
+--
+
+INSERT INTO `hibernate_sequence` (`next_val`) VALUES
+(34);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `mascota`
+--
+
+CREATE TABLE `mascota` (
+  `id` int(11) NOT NULL,
+  `fecha_nacimiento` date DEFAULT NULL,
+  `foto` varchar(100) DEFAULT NULL,
+  `nombre` varchar(30) DEFAULT NULL,
+  `raza` varchar(30) DEFAULT NULL,
+  `tipo` varchar(30) DEFAULT NULL,
+  `id_user` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `mascota`
+--
+
+INSERT INTO `mascota` (`id`, `fecha_nacimiento`, `foto`, `nombre`, `raza`, `tipo`, `id_user`) VALUES
+(1, '2021-03-07', NULL, 'Petra', 'Bulldog', 'Perro', 2),
+(19, '2017-06-07', 'foto2.jpg', 'Tao', 'egipcio', 'gato', 3),
+(30, '2018-07-05', 'vaca.jpg', 'Lola', 'janda', 'vaca', 3),
+(31, '2027-09-10', 'caballo.jpg', 'Percheron', 'andaluz', 'caballo', 11);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `user`
+--
+
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL,
+  `apellidos` varchar(50) NOT NULL,
+  `enabled` bit(1) NOT NULL,
+  `nombre` varchar(100) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `role` varchar(255) DEFAULT NULL,
+  `telefono` varchar(100) NOT NULL,
+  `username` varchar(30) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `user`
+--
+
+INSERT INTO `user` (`id`, `apellidos`, `enabled`, `nombre`, `password`, `role`, `telefono`, `username`) VALUES
+(2, 'forero', b'1', 'maria', '$2a$10$jSSMckiLIgOgK/5XqbUTGebbYil81pv91TV6WCqwnD.BlEcEJJtAm', 'ROLE_ADMIN', '690929346', 'maria'),
+(3, 'Jimenez', b'1', 'Pedro', '$2a$10$61Mztuk5UffmDv/LWdRHMeum6sxQ84JBrJNCy/WaZqS9F/AQrKzxW', 'ROLE_CLIENTE', '654783390', 'pedro'),
+(12, 'Ramirez', b'1', 'Leticia', '$2a$10$jlZa.7fLTCKzOE2Dfceq3O8.Y54iyYFuSVlfySpAYF.dkccTHsZH6', 'ROLE_VETERINARIO', '600982322', 'leticia'),
+(11, 'Can', b'1', 'Sara', '$2a$10$nNW3Y4rgobjMRDtEBcFaIeV.J0BmkUmknz48aCzUdwLIz4XEMQ26i', 'ROLE_CLIENTE', '600982377', 'sara'),
+(13, 'Hernandez', b'1', 'JesusH', '$2a$10$FF4vci0F40P/bKuzEO04T.r4k4j8/w3riB3vI.jVKlg9XnI18moXC', 'ROLE_CLIENTE', '651167938', 'jesus'),
+(9, 'tey', b'1', 'Laura', '$2a$10$LKVKrQbLrLrdiHlMi9UenewVB3fjnvkh.EjByJfAaLPuR/fXEHRke', 'ROLE_VETERINARIO', '876543432', 'laura'),
+(15, 'gonzalez', b'1', 'carmen', '$2a$10$mXkoQvBO739m7pcdaooFAOX.TqqsmLJrztow939iSp6LJfSo8wSne', 'ROLE_CLIENTE', '600983744', 'carmen'),
+(32, 'Ulloa', b'1', 'Carlos', '$2a$10$adQ/KPamIFz3tnx/VdT98uMNogvhGeCjoGps5VKv3zfPqKmjHRejS', 'ROLE_VETERINARIO', '760034788', 'carlos'),
+(33, 'Ortiz', b'1', 'Julio', '$2a$10$BFRgXXzTD8S.MMmtDh01wecYg6dg2nVqJYSeSg6bUz8MwSJ2tbIRS', 'ROLE_VETERINARIO', '600034988', 'julio');
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `cita`
+--
+ALTER TABLE `cita`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `mascota_id_fk` (`id_mascota`),
+  ADD KEY `user_id_fk` (`id_user`);
+
+--
+-- Indices de la tabla `mascota`
+--
+ALTER TABLE `mascota`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id_fk` (`id_user`);
+
+--
+-- Indices de la tabla `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`id`);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
